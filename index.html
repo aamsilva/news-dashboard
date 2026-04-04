@@ -2,31 +2,182 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Hermes Intelligence Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-body{font-family:Inter,sans-serif;background:#0a0e17;color:#f9fafb;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:20px;text-align:center;}
-h1{font-size:2.5rem;background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px;}
-p{color:#9ca3af;font-size:1.2rem;margin-bottom:30px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:800px;width:100%;}
-.card{background:#1a1f2e;border:1px solid #374151;border-radius:14px;padding:30px;text-decoration:none;color:inherit;transition:all .3s;}
-.card:hover{transform:translateY(-4px);border-color:#3b82f6;}
-.card h2{font-size:1.3rem;margin-bottom:10px;}
-.card span{color:#9ca3af;font-size:.9rem;}
+:root{--bg:#0a0e17;--bg2:#111827;--card:#1a1f2e;--blue:#3b82f6;--purple:#8b5cf6;--green:#10b981;--orange:#f59e0b;--text:#f9fafb;--text2:#9ca3af;--muted:#6b7280;--border:#374151;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);padding:20px;}
+.container{max-width:1400px;margin:0 auto;}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.header h1{font-size:1.6rem;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:30px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.stat label{font-size:.7rem;text-transform:uppercase;color:var(--muted);}
+.stat div{font-size:1.8rem;font-weight:700;font-family:"JetBrains Mono",monospace;}
+.section{font-size:1.15rem;font-weight:600;margin:28px 0 14px;padding-left:10px;border-left:4px solid var(--blue);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:30px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;transition:all .3s;}
+.card:hover{transform:translateY(-3px);border-color:var(--blue);}
+.thumb{width:100%;height:160px;border-radius:8px;object-fit:cover;background:#000;margin-bottom:10px;}
+h3{font-size:.95rem;margin-bottom:6px;line-height:1.4;}
+h3 a{color:var(--text);text-decoration:none;}
+h3 a:hover{color:var(--blue);}
+.meta{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-top:8px;}
+.tag{padding:3px 8px;background:var(--bg2);border-radius:4px;font-size:.65rem;}
+.tag.yt{border:1px solid #ff0000;color:#ff0000;}
+.yt-link{display:block;text-align:center;padding:10px;background:var(--bg2);border-top:1px solid var(--border);color:var(--blue);text-decoration:none;font-weight:500;transition:all .2s;border-radius:0 0 12px 12px;margin-top:-14px;}
+.yt-link:hover{background:var(--blue);color:white;}
+footer{text-align:center;padding:20px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:30px;}
+.live{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:20px;font-size:.8rem;color:var(--green);}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4);}50%{box-shadow:0 0 0 8px rgba(16,185,129,0);}}
+.links{margin-top:20px;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;text-align:center;}
+.links a{display:inline-block;padding:10px 20px;background:var(--blue);color:white;text-decoration:none;border-radius:8px;margin:5px;font-weight:600;}
+.links a:hover{background:var(--purple);}
+@media(max-width:768px){.stats{grid-template-columns:repeat(2,1fr);}.grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
-<h1>🤖 Hermes Intelligence Hub</h1>
-<p>Choose your dashboard</p>
-<div class="grid">
-<a class="card" href="catalog.html">
-<h2>📺 Video Catalog</h2>
-<span>726 videos • Filters • Search</span>
-</a>
-<a class="card" href="https://aamsilva.github.io/news-dashboard/">
-<h2>📊 Live Dashboard</h2>
-<span>Real-time news • YouTube insights</span>
-</a>
+<div class="container">
+<header class="header">
+<div><h1>🤖 Hermes Intelligence Hub</h1><p>Real-time Intelligence Dashboard</p></div>
+<div class="live"><span class="dot"></span>LIVE — 21:47 UTC</div>
+</header>
+<div class="stats">
+<div class="stat" style="color:var(--blue)"><label>Total Videos</label><div>778</div></div>
+<div class="stat" style="color:var(--purple)"><label>Bilawal Sidhu</label><div>8</div></div>
+<div class="stat" style="color:var(--green)"><label>Categories</label><div>8</div></div>
+<div class="stat" style="color:var(--orange)"><label>Last Update</label><div>21:47</div></div>
 </div>
-</body>
-</html>
+<h2 class="section">📺 Top Videos</h2><div class="grid">
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/0p8o7AeHDzg/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=0p8o7AeHDzg" target="_blank">Ex-Google PM Builds God's Eye to Monitor Iran in 4D</a></h3><p style="font-size:.75rem;color:var(--text2)">All 
+ Worldview, 
+ basically 
+ command 
+ intelligence 
+ It 
+ project, 
+ crazy 
+ all 
+ Like, 
+ strikes 
+ watching 
+ reali...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 1,769,471 | ⏱ 11:06 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=0p8o7AeHDzg" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/0OdR8rRMz3I/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=0OdR8rRMz3I" target="_blank">Your WiFi Can See You. Here's How.</a></h3><p style="font-size:.75rem;color:var(--text2)">Your 
+ when 
+ Not 
+ bought, 
+ off 
+ this 
+ constantly 
+ about 
+ bounce 
+ your 
+ course, 
+ through 
+ change 
+ specific 
+ ...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 730,575 | ⏱ 11:16 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=0OdR8rRMz3I" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/rXvU7bPJ8n4/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=rXvU7bPJ8n4" target="_blank">Ex-Google Maps PM Vibe Coded Palantir In a Weekend (Palantir Noticed)</a></h3><p style="font-size:.75rem;color:var(--text2)">[music] 
+ >> So 
+ last 
+ X. 
+ people. 
+ Like 
+ Palantir 
+ World 
+ you 
+ live 
+ commercial 
+ together 
+ skinned 
+ intelli...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 596,306 | ⏱ 10:15 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=rXvU7bPJ8n4" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/ccZzOGnT4Cg/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=ccZzOGnT4Cg" target="_blank">Ex-Google PM Uses God's Eye to Reveal Iran's Chokehold on the World's Oil</a></h3><p style="font-size:.75rem;color:var(--text2)">So, 
+ view 
+ a 
+ Epic 
+ vessel 
+ all 
+ all 
+ has 
+ eyes 
+ This 
+ Normally, 
+ here 
+ world's 
+ nothing 
+ effectively 
+...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 141,368 | ⏱ 16:15 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=ccZzOGnT4Cg" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/3BsKFoU3ucg/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=3BsKFoU3ucg" target="_blank">Holographic Video is Finally Here. 4D Gaussian Splats Explained!</a></h3><p style="font-size:.75rem;color:var(--text2)">Well, 
+ AI 
+ list 
+ cool, 
+ technology 
+ into 
+ videos. 
+ movie, 
+ commercial 
+ a 
+ 40 
+ it 
+ Okay, 
+ paintings 
+ colore...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 115,388 | ⏱ 10:16 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=3BsKFoU3ucg" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/qmRi23I21DY/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=qmRi23I21DY" target="_blank">You've Been 3D Scanning the Planet Without Knowing It</a></h3><p style="font-size:.75rem;color:var(--text2)">10 
+ people 
+ and 
+ through 
+ They 
+ their 
+ is 
+ innocuous 
+ build 
+ in 
+ 30 
+ and 
+ that 
+ was 
+ with 
+...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 45,890 | ⏱ 11:47 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=qmRi23I21DY" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/-k87m_sdhRI/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=-k87m_sdhRI" target="_blank">Nodes Aren't the Future of AI Creation. Here's What Is.</a></h3><p style="font-size:.75rem;color:var(--text2)">If 
+ lately, 
+ trend. 
+ Nodes 
+ Whether 
+ UI, 
+ leaning 
+ I'm 
+ aren't 
+ posit 
+ They 
+ but 
+ button, 
+ back 
+ close 
+...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 33,750 | ⏱ 11:43 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=-k87m_sdhRI" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/2CdNiTIm2Nk/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=2CdNiTIm2Nk" target="_blank">From DARPA Military Tech to Waymo Self Driving</a></h3><p style="font-size:.75rem;color:var(--text2)">All 
+ world 
+ is 
+ far 
+ [music] 
+ fully 
+ But 
+ ago, 
+ and 
+ completely 
+ in 
+ Whimo 
+ seen 
+ And 
+ major 
+...</p><div class="meta"><span class="tag yt">▶ Bilawal Sidhu</span><span>👁 12,961 | ⏱ 28:28 | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=2CdNiTIm2Nk" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/wURmzLKhJco/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=wURmzLKhJco" target="_blank">Ethereum’s Quantum Plan Before Q-Day with Justin Drake</a></h3><p style="font-size:.75rem;color:var(--text2)">One  interesting  shift  of  mindset  for  me in  in  the  last  few  months  is  that  I've I've  stopped  thinking  ab...</p><div class="meta"><span class="tag yt">▶ Bankless</span><span>👁 0 | ⏱ N/A | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=wURmzLKhJco" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/RGbZsE7qFgw/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=RGbZsE7qFgw" target="_blank">Modern physics is forcing us to rethink existence | Michelle Thaller: Full Inter</a></h3><p style="font-size:.75rem;color:var(--text2)">My  name  is  Michelle  Fowler  and  I  am  an astronomer.  I  work  at  NASA's  Gddard Space  Flight  Center. >> How  a...</p><div class="meta"><span class="tag yt">▶ Big Think</span><span>👁 0 | ⏱ N/A | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=RGbZsE7qFgw" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/9JxaESJIGO0/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=9JxaESJIGO0" target="_blank">Pierre Poilievre: The Economy Is About to Collapse! America Is Making a Huge Mis</a></h3><p style="font-size:.75rem;color:var(--text2)">Trump  threw  the  election  and  then thereafter  said  that >> Canada  should  honestly  become  our  51st state >> wh...</p><div class="meta"><span class="tag yt">▶ Diary of a CEO</span><span>👁 0 | ⏱ N/A | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=9JxaESJIGO0" target="_blank">▶ Watch on YouTube</a>
+<div class="card"><img class="thumb" src="https://img.youtube.com/vi/Gi1zk8rLqNI/hqdefault.jpg" loading="lazy"><h3><a href="https://youtube.com/watch?v=Gi1zk8rLqNI" target="_blank">Has the World Become Uninsurable?</a></h3><p style="font-size:.75rem;color:var(--text2)">For  a  long  time,  insurance  has  been  one of  the  least  visible  and  most  stable parts  of  the  economy.  It  ...</p><div class="meta"><span class="tag yt">▶ Economics Explained</span><span>👁 0 | ⏱ N/A | 📅 2026-04-04</span></div></div><a class="yt-link" href="https://youtube.com/watch?v=Gi1zk8rLqNI" target="_blank">▶ Watch on YouTube</a>
+</div>
+<div class="links"><a href="catalog.html">📺 Full Video Catalog</a></div>
+<footer><p>🤖 Hermes Agent • Auto-managed</p><p>2026-04-04 21:47 UTC</p></footer>
+</div></body></html>
