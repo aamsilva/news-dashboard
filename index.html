@@ -6,244 +6,180 @@
 <title>🤖 Hermes Intelligence Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
---bg: #0a0e17; --bg2: #111827; --card: #1a1f2e; --card-h: #242938;
---blue: #3b82f6; --purple: #8b5cf6; --green: #10b981; --orange: #f59e0b;
---text: #f9fafb; --text2: #9ca3af; --muted: #6b7280; --border: #374151;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-body::before { content:''; position:fixed; inset:0; background: radial-gradient(ellipse at 20% 20%, rgba(59,130,246,.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(139,92,246,.15) 0%, transparent 50%); pointer-events:none; z-index:-1; }
-.container { max-width: 1500px; margin: 0 auto; padding: 20px; }
-
-.header { display:flex; justify-content:space-between; align-items:center; padding:20px 28px; background:var(--bg2); border:1px solid var(--border); border-radius:14px; margin-bottom:24px; }
-.header h1 { font-size:1.6rem; font-weight:700; background:linear-gradient(135deg,var(--blue),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-.header p { color:var(--text2); font-size:0.85rem; }
-.live { display:flex; align-items:center; gap:8px; padding:8px 14px; background:rgba(16,185,129,.1); border:1px solid rgba(16,185,129,.3); border-radius:20px; font-size:0.8rem; color:var(--green); }
-.dot { width:8px; height:8px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
-@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4);} 50%{box-shadow:0 0 0 8px rgba(16,185,129,0);} }
-
-.stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:14px; margin-bottom:30px; }
-.stat { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; }
-.stat label { font-size:0.7rem; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); }
-.stat div { font-size:1.8rem; font-weight:700; font-family:'JetBrains Mono',monospace; }
-.stat.blue div { color:var(--blue); }
-.stat.purple div { color:var(--purple); }
-.stat.green div { color:var(--green); }
-.stat.orange div { color:var(--orange); }
-
-.section { font-size:1.15rem; font-weight:600; margin:28px 0 14px; padding-left:10px; border-left:4px solid var(--blue); }
-
-.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:16px; margin-bottom:30px; }
-
-.card { display:flex; gap:14px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px; transition:all .3s; }
-.card:hover { transform:translateY(-3px); border-color:var(--blue); box-shadow:0 8px 24px rgba(0,0,0,.3); }
-
-.thumb { width:120px; height:68px; border-radius:8px; object-fit:cover; flex-shrink:0; background:#000; }
-.thumb-sm { width:32px; height:32px; border-radius:6px; flex-shrink:0; }
-
-.content { flex:1; min-width:0; }
-.content h3 { font-size:0.9rem; font-weight:600; margin-bottom:6px; line-height:1.4; }
-.content h3 a { color:var(--text); text-decoration:none; }
-.content h3 a:hover { color:var(--blue); }
-.content p { font-size:0.75rem; color:var(--text2); line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.meta { display:flex; justify-content:space-between; align-items:center; margin-top:10px; font-size:0.7rem; color:var(--muted); }
-.tag { padding:3px 8px; background:var(--bg2); border-radius:4px; font-size:0.65rem; }
-.tag.hn { border:1px solid #ff6600; color:#ff6600; }
-.tag.yt { border:1px solid #ff0000; color:#ff0000; }
-
-.footer { text-align:center; padding:20px; color:var(--muted); font-size:0.8rem; border-top:1px solid var(--border); margin-top:30px; }
-
-@media (max-width:768px) { .header{flex-direction:column;gap:12px;} .grid{grid-template-columns:1fr;} .thumb{width:100px;height:56px;} }
+:root {--bg:#0a0e17;--bg2:#111827;--card:#1a1f2e;--card-h:#242938;--blue:#3b82f6;--purple:#8b5cf6;--green:#10b981;--orange:#f59e0b;--text:#f9fafb;--text2:#9ca3af;--muted:#6b7280;--border:#374151;}
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(59,130,246,.15),transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(139,92,246,.15),transparent 50%);pointer-events:none;z-index:-1;}
+.container{max-width:1500px;margin:0 auto;padding:20px;}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;margin-bottom:24px;}
+.header h1{font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header p{color:var(--text2);font-size:0.85rem;}
+.live{display:flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:20px;font-size:0.8rem;color:var(--green);}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4);}50%{box-shadow:0 0 0 8px rgba(16,185,129,0);}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:30px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;}
+.stat label{font-size:0.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);}
+.stat div{font-size:1.8rem;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.stat.blue div{color:var(--blue);}
+.stat.purple div{color:var(--purple);}
+.stat.green div{color:var(--green);}
+.stat.orange div{color:var(--orange);}
+.section{font-size:1.15rem;font-weight:600;margin:28px 0 14px;padding-left:10px;border-left:4px solid var(--blue);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-bottom:30px;}
+.card{display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;transition:all .3s;}
+.card:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.thumb{width:120px;height:68px;border-radius:8px;object-fit:cover;flex-shrink:0;background:#000;}
+.thumb-sm{width:32px;height:32px;border-radius:6px;flex-shrink:0;background:var(--bg2);}
+.content{flex:1;min-width:0;}
+.content h3{font-size:0.9rem;font-weight:600;margin-bottom:6px;line-height:1.4;}
+.content h3 a{color:var(--text);text-decoration:none;}
+.content h3 a:hover{color:var(--blue);}
+.content p{font-size:0.75rem;color:var(--text2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:0.7rem;color:var(--muted);}
+.tag{padding:3px 8px;background:var(--bg2);border-radius:4px;font-size:0.65rem;}
+.tag.hn{border:1px solid #ff6600;color:#ff6600;}
+.tag.yt{border:1px solid #ff0000;color:#ff0000;}
+.footer{text-align:center;padding:20px;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--border);margin-top:30px;}
+@media(max-width:768px){.header{flex-direction:column;gap:12px;}.grid{grid-template-columns:1fr;}.thumb{width:100px;height:56px;}}
 </style>
 </head>
 <body>
 <div class="container">
 <header class="header">
-<div>
-<h1>🤖 Hermes Intelligence Hub</h1>
-<p>Real-time AI, Tech & Geopolitics Intelligence</p>
-</div>
-<div class="live"><span class="dot"></span> LIVE — 2026-04-04 16:22 UTC</div>
+<div><h1>🤖 Hermes Intelligence Hub</h1><p>Real-time AI, Tech & Geopolitics Intelligence</p></div>
+<div class="live"><span class="dot"></span> LIVE — 2026-04-04 16:25 UTC</div>
 </header>
-
 <div class="stats">
-<div class="stat blue"><label>News Stories</label><div>6</div></div>
-<div class="stat purple"><label>YouTube Videos</label><div>20</div></div>
-<div class="stat green"><label>Pipeline Runs</label><div>41</div></div>
+<div class="stat blue"><label>News</label><div>7</div></div>
+<div class="stat purple"><label>Videos</label><div>15</div></div>
+<div class="stat green"><label>Pipeline</label><div>41</div></div>
 <div class="stat orange"><label>Efficiency</label><div>0.75%</div></div>
 </div>
-
-<h2 class="section">📺 Latest Videos (20 imported)</h2>
+<h2 class="section">📺 Latest Videos (15 with thumbnails)</h2>
 <div class="grid">
 
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/9zpRULZQssI/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">You're being misled about what AI can actually do</a></h3>
-<p>Relevance score: 6 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 6 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=9zpRULZQssI" target="_blank">You're being misled about what AI can actually do</a></h3>
+<p>Relevance: 6 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/dmtvGKuRE64/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Anthropic vs. The Pentagon, Claude Outpaces ChatGPT, and Consulti</a></h3>
-<p>Relevance score: 6 • 16:06</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 6 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=dmtvGKuRE64" target="_blank">Anthropic vs. The Pentagon, Claude Outpaces ChatGPT, and Consulti</a></h3>
+<p>Relevance: 6 pts • 16:06</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/a_T5fjA2ulY/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">AI News: Claude Can Now Control Your Computer!</a></h3>
-<p>Relevance score: 6 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 6 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=a_T5fjA2ulY" target="_blank">AI News: Claude Can Now Control Your Computer!</a></h3>
+<p>Relevance: 6 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/4dZ0VYjB8N8/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">This Free App Runs AI Offline On Your iPhone</a></h3>
-<p>Relevance score: 6 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 6 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=4dZ0VYjB8N8" target="_blank">This Free App Runs AI Offline On Your iPhone</a></h3>
+<p>Relevance: 6 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/9f2egsZZjnw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">New Claude & GPT Models Just Dropped (It's War!)</a></h3>
-<p>Relevance score: 6 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 6 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=9f2egsZZjnw" target="_blank">New Claude & GPT Models Just Dropped (It's War!)</a></h3>
+<p>Relevance: 6 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/1roSPMSnCBw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Claude just got caught...</a></h3>
-<p>Relevance score: 5 • 16:06</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=1roSPMSnCBw" target="_blank">Claude just got caught...</a></h3>
+<p>Relevance: 5 pts • 16:06</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/lq_2axxlYRw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">AI Accelerates: New Gemini Model + AI Unemployment Stories Analys</a></h3>
-<p>Relevance score: 5 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=lq_2axxlYRw" target="_blank">How Iran Controls the Strait of Hormuz With These Islands | WSJ</a></h3>
+<p>Relevance: 5 pts • 16:24</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/7LinUW0CGE0/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">You Are Being Told Contradictory Things About AI</a></h3>
-<p>Relevance score: 5 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=7LinUW0CGE0" target="_blank">What Trump Could Do With Marines in the Iran War | WSJ</a></h3>
+<p>Relevance: 5 pts • 16:24</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/jWsd2fRzpUo/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Anthropic just dropped Opus 4.6...</a></h3>
-<p>Relevance score: 5 • 16:06</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=jWsd2fRzpUo" target="_blank">AI Accelerates: New Gemini Model + AI Unemployment Stories Analys</a></h3>
+<p>Relevance: 5 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/iO844izo9kw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Two AI Models Set to “stir government urgency”, But Will This Cha</a></h3>
-<p>Relevance score: 5 • 16:11</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=iO844izo9kw" target="_blank">You Are Being Told Contradictory Things About AI</a></h3>
+<p>Relevance: 5 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/ORW9FumLGBo/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Is GPT-5.1 Really an Upgrade? But Models Can Auto-Hack Govts, so </a></h3>
-<p>Relevance score: 5 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=ORW9FumLGBo" target="_blank">Anthropic just dropped Opus 4.6...</a></h3>
+<p>Relevance: 5 pts • 16:06</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/s4tptozUJ8Y/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Will America go to war with Iran?</a></h3>
-<p>Relevance score: 5 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=s4tptozUJ8Y" target="_blank">Two AI Models Set to “stir government urgency”, But Will This Cha</a></h3>
+<p>Relevance: 5 pts • 16:22</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/8eqdMpCz9tc/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Grok 4 - 10 New Things to Know</a></h3>
-<p>Relevance score: 5 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=8eqdMpCz9tc" target="_blank">Is GPT-5.1 Really an Upgrade? But Models Can Auto-Hack Govts, so </a></h3>
+<p>Relevance: 5 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/taLzgvbrnv0/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">Why Iran is attacking everyone</a></h3>
-<p>Relevance score: 5 • 16:07</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
-</div>
+<h3><a href="https://youtube.com/watch?v=taLzgvbrnv0" target="_blank">Will America go to war with Iran?</a></h3>
+<p>Relevance: 5 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="" alt="thumbnail" loading="lazy" onerror="this.src='https://youtube.com/img/channel/default_avatar.png'">
+<img class="thumb" src="https://img.youtube.com/vi/dbgL00a7_xs/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=" target="_blank">NVIDIA's $1 Trillion Prediction, Anthropic Beats OpenAI, Tesla vs</a></h3>
-<p>Relevance score: 5 • 16:11</p>
-<div class="meta">
-<span class="tag yt">▶ YouTube</span>
-<span>★ 5 pts</span>
+<h3><a href="https://youtube.com/watch?v=dbgL00a7_xs" target="_blank">Grok 4 - 10 New Things to Know</a></h3>
+<p>Relevance: 5 pts • 16:07</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
 </div>
 </div>
 </div>
-</div>
-
 <h2 class="section">📰 Latest News</h2>
 <div class="grid">
 
@@ -251,33 +187,16 @@ body::before { content:''; position:fixed; inset:0; background: radial-gradient(
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
 <h3><a href="https://arxiv.org/abs/2604.01193" target="_blank">Simple self-distillation improves code generation</a></h3>
-<p>🔥 269 pts · 💬 75 comments</p>
-<div class="meta">
-<span class="tag hn">HackerNews</span>
-<span></span>
-</div>
+<p>🔥 272 pts · 💬 75 comments</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 <div class="card">
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://thoughts.wyounas.com/p/some-unusual-trees" target="_blank">Some Unusual Trees</a></h3>
-<p>🔥 123 pts · 💬 34 comments</p>
-<div class="meta">
-<span class="tag hn">HackerNews</span>
-<span></span>
-</div>
-</div>
-</div>
-<div class="card">
-<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
-<div class="content">
-<h3><a href="https://www.bbc.com/news/articles/ce8jzr423p9o" target="_blank">Artemis II crew take “spectacular” image of Earth</a></h3>
-<p>🔥 889 pts · 💬 306 comments</p>
-<div class="meta">
-<span class="tag hn">HackerNews</span>
-<span></span>
-</div>
+<h3><a href="https://www.thetimes.com/uk/technology-uk/article/sarah-wynn-williams-careless-people-meta-nrffdfpmf" target="_blank">Author of "Careless People" banned from saying anything negative about Meta</a></h3>
+<p>🔥 48 pts · 💬 5 comments</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 <div class="card">
@@ -285,39 +204,45 @@ body::before { content:''; position:fixed; inset:0; background: radial-gradient(
 <div class="content">
 <h3><a href="https://mtlynch.io/claude-code-found-linux-vulnerability/" target="_blank">Claude Code Found a Linux Vulnerability Hidden for 23 Years</a></h3>
 <p>🔥 176 pts · 💬 102 comments</p>
-<div class="meta">
-<span class="tag hn">HackerNews</span>
-<span></span>
-</div>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 <div class="card">
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://www.thetimes.com/uk/technology-uk/article/sarah-wynn-williams-careless-people-meta-nrffdfpmf" target="_blank">Author of "Careless People" banned from saying anything negative about Meta</a></h3>
-<p>🔥 43 pts · 💬 2 comments</p>
-<div class="meta">
-<span class="tag hn">HackerNews</span>
-<span></span>
+<h3><a href="https://www.youtube.com/watch?v=hyjCmIbRRvs" target="_blank">Why Inventing Color TV Was So Difficult [video]</a></h3>
+<p>🔥 26 pts · 💬 7 comments</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
+</div>
+<div class="card">
+<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://thoughts.wyounas.com/p/some-unusual-trees" target="_blank">Some Unusual Trees</a></h3>
+<p>🔥 124 pts · 💬 34 comments</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://www.woman-of-letters.com/p/the-most-disliked-people-in-the-publishing" target="_blank">The most-disliked people in the publishing industry</a></h3>
+<p>🔥 51 pts · 💬 11 comments</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 <div class="card">
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
 <h3><a href="https://www.dbreunig.com/2026/03/26/winchester-mystery-house.html" target="_blank">The Cathedral, the Bazaar, and the Winchester Mystery House</a></h3>
-<p>🔥 73 pts · 💬 23 comments</p>
-<div class="meta">
-<span class="tag hn">HackerNews</span>
-<span></span>
+<p>🔥 75 pts · 💬 25 comments</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 </div>
-</div>
-
 <footer class="footer">
 <p>🤖 Hermes Agent • Auto-managed Intelligence Pipeline</p>
-<p>Updated: 2026-04-04 16:22 UTC</p>
+<p>Updated: 2026-04-04 16:25 UTC</p>
 </footer>
 </div>
 </body>
