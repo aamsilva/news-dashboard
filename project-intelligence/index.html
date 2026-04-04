@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Intelligence Dashboard — Augusto Silva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-card: #1c2333;
+      --bg-hover: #252d3d;
+      --accent: #e94560;
+      --accent-glow: rgba(233, 69, 96, 0.15);
+      --accent-secondary: #0f3460;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
+      --border: rgba(240, 246, 252, 0.08);
+      --border-accent: rgba(233, 69, 96, 0.3);
+      --success: #3fb950;
+      --warning: #f2cc60;
+      --info: #58a6ff;
+      --danger: #f85149;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    /* Top bar */
+    .topbar {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
+    .topbar h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+    .topbar h1 span { color: var(--accent); }
+    .topbar .separator { color: var(--text-muted); font-size: 14px; }
+    .topbar .updated { color: var(--text-muted); font-size: 12px; margin-left: auto; }
+    /* Search and filters */
+    .toolbar {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      color: var(--text-primary);
+      font-size: 14px;
+      width: 280px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box:focus { border-color: var(--accent); }
+    .search-box::placeholder { color: var(--text-muted); }
+    .filter-btn {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover { border-color: var(--text-muted); color: var(--text-primary); }
+    .filter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+    .filter-spacer { flex: 1; }
+    .stats-bar {
+      background: var(--bg-secondary);
+      padding: 0 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0;
+    }
+    .stat-item {
+      padding: 14px 18px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+    /* Layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+      min-height: calc(100vh - 140px - 48px - 56px);
+    }
+    /* Sidebar */
+    .sidebar {
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 16px 0;
+      height: calc(100vh - 140px - 48px - 56px);
+      position: sticky;
+      top: 112px;
+      overflow-y: auto;
+    }
+    .sidebar-section {
+      padding: 0 16px;
+      margin-bottom: 20px;
+    }
+    .sidebar-title {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0 8px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .sidebar-item:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .sidebar-item.active { background: var(--accent-glow); color: var(--accent); }
+    .sidebar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-left: auto;
+    }
+    .status-active { background: rgba(63, 185, 80, 0.15); color: var(--success); }
+    .status-scheduled { background: rgba(88, 166, 255, 0.15); color: var(--info); }
+    .status-warning { background: rgba(242, 204, 96, 0.15); color: var(--warning); }
+    .status-granted { background: rgba(63, 185, 80, 0.15); color: var(--success); }
+    /* Main content */
+    .main {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .section { margin-bottom: 32px; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      font-size: 20px;
+    }
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .section-count {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-left: auto;
+    }
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+    .card.priority-critical::before { background: var(--danger); }
+    .card.priority-high::before { background: var(--warning); }
+    .card.priority-medium::before { background: var(--info); }
+    .card.priority-low::before { background: var(--success); }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .card-priority {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .card-meta-item {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+    /* Action items */
+    .action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .action-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all 0.15s;
+    }
+    .action-item:hover { border-color: var(--border-accent); }
+    .action-check {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--text-muted);
+      border-radius: 4px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .action-content { flex: 1; }
+    .action-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .action-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .action-assignee {
+      font-size: 11px;
+      background: var(--bg-hover);
+      padding: 3px 10px;
+      border-radius: 10px;
+      color: var(--text-secondary);
+    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 20px;
+      padding-left: 16px;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -20px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+    .timeline-dot.red { border-color: var(--danger); background: rgba(248, 81, 73, 0.3); }
+    .timeline-dot.green { border-color: var(--success); background: rgba(63, 185, 80, 0.3); }
+    .timeline-dot.blue { border-color: var(--info); background: rgba(88, 166, 255, 0.3); }
+    .timeline-dot.yellow { border-color: var(--warning); background: rgba(242, 204, 96, 0.3); }
+    .timeline-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .timeline-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-top: 4px;
+    }
+    .timeline-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    /* Logbook entries */
+    .logbook-entry {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .logbook-date {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .logbook-items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .logbook-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .logbook-item::before {
+      content: '•';
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+      }
+      .sidebar-section { margin-bottom: 12px; }
+      .toolbar { padding: 12px; }
+      .search-box { width: 100%; }
+      .main { padding: 16px; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+    /* Pulse animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .live-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      margin-right: 6px;
+    }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+    /* Tab navigation for main sections */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .tab-btn:hover { color: var(--text-secondary); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+  </style>
+</head>
+<body>
+  <!-- Top bar -->
+  <div class="topbar">
+    <h1>📊 Project <span>Intelligence</span> Dashboard</h1>
+    <span class="separator">|</span>
+    <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary)">
+      <span class="live-dot"></span> Augusto Silva — Hexa Labs
+    </div>
+    <div class="updated" id="lastUpdated">🔄 Atualizado: 04 Abr 2026, 23:00 UTC</div>
+  </div>
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <input type="text" class="search-box" id="searchInput" placeholder="🔍 Pesquisar projetos, ações, pessoas..." oninput="filterCards(this.value)">
+    <button class="filter-btn active" onclick="setFilter('all', this)">Todos</button>
+    <button class="filter-btn" onclick="setFilter('critical', this)">🔴 Urgente</button>
+    <button class="filter-btn" onclick="setFilter('high', this)">🟡 Importante</button>
+    <button class="filter-btn" onclick="setFilter('medium', this)">🔵 Info</button>
+    <button class="filter-btn" onclick="setFilter('low', this)">🟢 Done</button>
+    <div class="filter-spacer"></div>
+    <button class="filter-btn" id="toggleSidebar" onclick="toggleSidebarMobile()">☰ Projetos</button>
+  </div>
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value" style="color:var(--danger)">5</div>
+        <div class="stat-label">Hot Actions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" style="color:var(--info)">4</div>
+        <div class="stat-label">Projetos Ativos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" style="color:var(--warning)">6</div>
+        <div class="stat-label">Missing Follow-ups</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" style="color:var(--text-muted)">4</div>
+        <div class="stat-label">Meetings Agendados</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" style="color:var(--text-muted)">720</div>
+        <div class="stat-label">Unread Emails</div>
+      </div>
+    </div>
+  </div>
+  <!-- Layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">🔥 Hot Actions</div>
+        <div class="sidebar-item" onclick="scrollToSection('hot-actions')">
+          <span>Comcast RDK Test</span>
+        </div>
+        <div class="sidebar-item" onclick="scrollToSection('hot-actions')">
+          <span>MEO Agite Kickoff</span>
+        </div>
+        <div class="sidebar-item" onclick="scrollToSection('hot-actions')">
+          <span>Board Meetings</span>
+        </div>
+        <div class="sidebar-item" onclick="scrollToSection('hot-actions')">
+          <span>Follow-up PO</span>
+        </div>
+        <div class="sidebar-item" onclick="scrollToSection('hot-actions')">
+          <span>54 Drafts Review</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">📁 Projetos</div>
+        <div class="sidebar-item active" onclick="filterByProject('meo-agite')">
+          <span class="sidebar-dot" style="background:#3fb950"></span>
+          <span>MEO Agite</span>
+          <span class="status-badge status-active">Ativo</span>
+        </div>
+        <div class="sidebar-item" onclick="filterByProject('rdk-comcast')">
+          <span class="sidebar-dot" style="background:#3fb950"></span>
+          <span>RDK Comcast</span>
+          <span class="status-badge status-granted">Concedido</span>
+        </div>
+        <div class="sidebar-item" onclick="filterByProject('hexa-labs')">
+          <span class="sidebar-dot" style="background:#58a6ff"></span>
+          <span>Hexa Labs</span>
+          <span class="status-badge status-scheduled">Agendado</span>
+        </div>
+        <div class="sidebar-item" onclick="filterByProject('hexa-consulting')">
+          <span class="sidebar-dot" style="background:#58a6ff"></span>
+          <span>Hexa Consulting</span>
+          <span class="status-badge status-scheduled">Agendado</span>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-title">👥 Stakeholders</div>
+        <div class="sidebar-item"><span>Pedro Santos</span></div>
+        <div class="sidebar-item"><span>Diogo Oliveira</span></div>
+        <div class="sidebar-item"><span>Daniel Finnegan</span></div>
+        <div class="sidebar-item"><span>Clara</span></div>
+        <div class="sidebar-item"><span>Zlatko Sator</span></div>
+        <div class="sidebar-item"><span>Senthilkumar R.</span></div>
+        <div class="sidebar-item"><span>Ryan Haaz</span></div>
+        <div class="sidebar-item"><span>Luis Santos</span></div>
+      </div>
+    </div>
+    <!-- Main -->
+    <div class="main" id="mainContent">
+      <!-- Tab navigation -->
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('actions', this)">🔥 Hot Actions</button>
+        <button class="tab-btn" onclick="switchTab('projects', this)">📁 Projetos</button>
+        <button class="tab-btn" onclick="switchTab('followups', this)">⚡ Follow-ups</button>
+        <button class="tab-btn" onclick="switchTab('timeline', this)">📅 Timeline</button>
+        <button class="tab-btn" onclick="switchTab('logbook', this)">📒 Logbook</button>
+      </div>
+
+      <!-- HOT ACTIONS TAB -->
+      <div class="tab-content active" id="tab-actions">
+        <div class="section">
+          <div class="section-header">
+            <span class="section-icon">🔴</span>
+            <div class="section-title">Urgentes — Esta Semana</div>
+          </div>
+          <div class="card-grid">
+            <div class="card priority-critical" data-priority="critical" data-project="rdk-comcast" data-search="comcast rd k jira ac esso senthilkumar ryan daniel finnegan rdkm">
+              <div class="card-header">
+                <span class="card-priority">🔴</span>
+                <div class="card-title">Testar Acesso Jira Comcast</div>
+              </div>
+              <div class="card-description">
+                Acesso RDK concedido por Senthilkumar Ramasamy (COMCAST-2918). Thread com 8 mensagens confirmou: <em>"The membership access has been granted to Augusto."</em>
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">📅 04 Abr 2026</div>
+                <div class="card-meta-item">👤 Senthilkumar R.</div>
+                <div class="card-meta-item">🏷️ RDK Comcast</div>
+              </div>
+            </div>
+
+            <div class="card priority-critical" data-priority="critical" data-project="meo-agite" data-search="meo agite kickoff daniel clara pedro santos senior pm consulting labs">
+              <div class="card-header">
+                <span class="card-priority">🔴</span>
+                <div class="card-title">Kickoff MEO Agite — Daniel + Clara</div>
+              </div>
+              <div class="card-description">
+                Daniel confirmado como Senior PM a <strong>324€/dia</strong> (Consulting → Labs). Clara onboarded na Hexa Labs para gestão MEO Agite. Verificar se Daniel já começou e garantir acessos da Clara.
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">📅 02 Abr 2026</div>
+                <div class="card-meta-item">👤 Pedro Santos</div>
+                <div class="card-meta-item">🏷️ MEO Agite</div>
+              </div>
+            </div>
+
+            <div class="card priority-critical" data-priority="critical" data-project="hexa-labs" data-search="board hexa labs diogo oliveira meeting reuniao">
+              <div class="card-header">
+                <span class="card-priority">🔴</span>
+                <div class="card-title">Board Meetings — Hexa Labs</div>
+              </div>
+              <div class="card-description">
+                Meeting aceite com Diogo Oliveira. Board da Hexa Labs — preparar agenda e documentos estratégicos.
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">📅 04 Abr 2026</div>
+                <div class="card-meta-item">👤 Diogo Oliveira</div>
+                <div class="card-meta-item">🏷️ Hexa Labs</div>
+              </div>
+            </div>
+
+            <div class="card priority-high" data-priority="high" data-project="meo-agite" data-search="po pedido compra 4514455685 agite rfq pmo split recursos consulting labs">
+              <div class="card-header">
+                <span class="card-priority">🟡</span>
+                <div class="card-title">Follow-up PO 4514455685 — Split Resources</div>
+              </div>
+              <div class="card-description">
+                Confusão com split de recursos entre Labs e Consulting. Envio do pedido de compra para AGITE RFQ PMO. Necessário esclarecer com Pedro Santos.
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">📅 25 Mar 2026</div>
+                <div class="card-meta-item">👤 Augusto → Pedro</div>
+                <div class="card-meta-item">🏷️ MEO Agite</div>
+              </div>
+            </div>
+
+            <div class="card priority-high" data-priority="high" data-project="admin" data-search="drafts rascunhos rever enviar pendentes outlook">
+              <div class="card-header">
+                <span class="card-priority">🟡</span>
+                <div class="card-title">Rever 54 Drafts Pendentes</div>
+              </div>
+              <div class="card-description">
+                Existem 54 emails em Drafts (Rascunhos) pendentes no Outlook. Rever, completar envio ou eliminar. Inclui possivelmente rascunhos relacionados com MEO Agite, Comcast e outros projetos.
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">📅 Contínuo</div>
+                <div class="card-meta-item">👤 Augusto</div>
+                <div class="card-meta-item">🏷️ Admin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS TAB -->
+      <div class="tab-content" id="tab-projects">
+        <div class="section">
+          <div class="section-header">
+            <span class="section-icon">📁</span>
+            <div class="section-title">Projetos Identificados</div>
+            <div class="section-count">4 projetos</div>
+          </div>
+          <div class="card-grid">
+            <div class="card priority-low" data-priority="low" data-project="meo-agite" data-search="meo agite projeto pedro santos daniel clara financing banco business case">
+              <div class="card-header">
+                <span class="card-priority">🟢</span>
+                <div class="card-title">MEO Agite</div>
+              </div>
+              <div class="card-description">
+                <strong>Status:</strong> 🟢 ATIVO<br>
+                <strong>Descrição:</strong> Projeto de consultoria/project management para MEO Agite. Flash Business Case partilhado sobre financiamento bancário.<br>
+                <strong>Equipa:</strong> Pedro Santos (lead), Daniel Finnegan (Senior PM, 324€/dia), Clara (gestão)<br>
+                <strong>Contratação:</strong> PO 4514455685 (AGITE RFQ PMO) — confusão com split resources<br>
+                <strong>Recursos Junior:</strong> CVs recebidos mas "um pouco resumidos", necessário rever candidaturas
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">👥 Pedro Santos, Daniel, Clara</div>
+                <div class="card-meta-item">💰 324€/dia (Daniel)</div>
+              </div>
+            </div>
+
+            <div class="card priority-low" data-priority="low" data-project="rdk-comcast" data-search="rdk comcast rd km access jira zlatko sator senthilkumar ryan boothby retnasanu abraham">
+              <div class="card-header">
+                <span class="card-priority">🟢</span>
+                <div class="card-title">RDK Comcast</div>
+              </div>
+              <div class="card-description">
+                <strong>Status:</strong> ✅ CONCEDIDO (04 Abr 2026)<br>
+                <strong>Descrição:</strong> Acesso ao Jira Comcast para suporte RDK (RDKM). Thread COMCAST-2918 com 8 mensagens.<br>
+                <strong>Equipa:</strong> Senthilkumar Ramasamy (Comcast), Ryan Haaz (Comcast), Zlatko Sator (interno)<br>
+                <strong>Próximos passos:</strong> Testar login Jira, participar sync semanal RDKM | Hexa
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">👥 Senthilkumar, Ryan, Zlatko</div>
+                <div class="card-meta-item">📋 Weekly Sync</div>
+              </div>
+            </div>
+
+            <div class="card priority-medium" data-priority="medium" data-project="hexa-labs" data-search="hexa labs board diogo oliveira governacao estrategia">
+              <div class="card-header">
+                <span class="card-priority">🔵</span>
+                <div class="card-title">Hexa Labs — Board</div>
+              </div>
+              <div class="card-description">
+                <strong>Status:</strong> 📅 AGENDADO<br>
+                <strong>Descrição:</strong> Board meeting da Hexa Labs (entidade principal/agência com meeting aceite com Diogo Oliveira. Preparar apresentação de estado, roadmap e KPIs.
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">👤 Diogo Oliveira</div>
+                <div class="card-meta-item">🔜 TBA</div>
+              </div>
+            </div>
+
+            <div class="card priority-medium" data-priority="medium" data-project="hexa-consulting" data-search="hexa consulting board diogo oliveira consultoria">
+              <div class="card-header">
+                <span class="card-priority">🔵</span>
+                <div class="card-title">Hexa Consulting — Board</div>
+              </div>
+              <div class="card-description">
+                <strong>Status:</strong> 📅 AGENDADO<br>
+                <strong>Descrição:</strong> Board meeting da Hexa Consulting (entidade de consultoria). Meeting aceite com Diogo Oliveira. Inclui time blocker semanal para Board Geral.
+              </div>
+              <div class="card-meta">
+                <div class="card-meta-item">👤 Diogo Oliveira</div>
+                <div class="card-meta-item">🔄 Semanal</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOLLOW-UPS TAB -->
+      <div class="tab-content" id="tab-followups">
+        <div class="section">
+          <div class="section-header">
+            <span class="section-icon">⚡</span>
+            <div class="section-title">Missing Follow-ups</div>
+            <div class="section-count">6 pendentes</div>
+          </div>
+          <div class="action-list">
+            <div class="action-item" data-search="daniel kickoff meo agite senior pm">
+              <div class="action-check"></div>
+              <div class="action-content">
+                <div class="action-title">Confirmar kickoff de Daniel — MEO Agite</div>
+                <div class="action-desc">Daniel está confirmado a 324€/dia mas não há evidência de ter começado.</div>
+              </div>
+              <div class="action-assignee">Daniel</div>
+            </div>
+            <div class="action-item" data-search="clara onboarding hexa labs meo agite gestao">
+              <div class="action-check"></div>
+              <div class="action-content">
+                <div class="action-title">Garantir onboarding da Clara — Acessos MEO Agite</div>
+                <div class="action-desc">Clara está na Hexa Labs para gestão MEO Agite. Verificar se tem todos os acessos.</div>
+              </div>
+              <div class="action-assignee">Augusto</div>
+            </div>
+            <div class="action-item" data-search="pedro santos split recursos labs consulting meo agite">
+              <div class="action-check"></div>
+              <div class="action-content">
+                <div class="action-title">Esclarecer split de recursos — Labs vs Consulting</div>
+                <div class="action-desc">Augusto expressou confusão com o split de recursos entre Labs e Consulting ao Pedro.</div>
+              </div>
+              <div class="action-assignee">Pedro Santos</div>
+            </div>
+            <div class="action-item" data-search="po 4514455685 follow-up pedido compra agite rfq pmo">
+              <div class="action-check"></div>
+              <div class="action-content">
+                <div class="action-title">Follow-up PO 4514455685 — AGITE RFQ PMO</div>
+                <div class="action-desc">Pedido de compra enviado em 25/03. Necessário confirmar aprovação e processamento.</div>
+              </div>
+              <div class="action-assignee">Pedro Santos</div>
+            </div>
+            <div class="action-item" data-search="drafts 54 rascunhos outlook rever enviar eliminar">
+              <div class="action-check"></div>
+              <div class="action-content">
+                <div class="action-title">Rever e processar 54 Drafts no Outlook</div>
+                <div class="action-desc">54 emails em rascunho — enviar, completar ou eliminar. Possível acumulação de pendentes.</div>
+              </div>
+              <div class="action-assignee">Augusto</div>
+            </div>
+            <div class="action-item" data-search="cv junior pmo meo candidaturas rever">
+              <div class="action-check"></div>
+              <div class="action-content">
+                <div class="action-title">Rever CVs — Candidatos Junior PMO MEO</div>
+                <div class="action-desc">CVs recebidos mas "um pouco resumidos". Necessário avaliar se são adequados ou pedir mais informação.</div>
+              </div>
+              <div class="action-assignee">Augusto</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE TAB -->
+      <div class="tab-content" id="tab-timeline">
+        <div class="section">
+          <div class="section-header">
+            <span class="section-icon">📅</span>
+            <div class="section-title">Timeline de Atividades</div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot green"></div>
+              <div class="timeline-date">04 Abr 2026 — 03:30</div>
+              <div class="timeline-title">✅ RDK Access Granted — Comcast</div>
+              <div class="timeline-desc">Senthilkumar Ramasamy confirmou acesso ao Jira para Augusto (COMCAST-2918)</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot green"></div>
+              <div class="timeline-date">04 Abr 2026 — 19:49</div>
+              <div class="timeline-title">📋 Board Hexa Labs Aceite — Diogo Oliveira</div>
+              <div class="timeline-desc">Meeting de Board da Hexa Labs aceite e agendado</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot blue"></div>
+              <div class="timeline-date">03 Abr 2026 — 14:56</div>
+              <div class="timeline-title">📋 Board Hexa Consulting Aceite — Diogo Oliveira</div>
+              <div class="timeline-desc">Meetings de Board e time blocker semanal aceites</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot blue"></div>
+              <div class="timeline-date">03 Abr 2026 — 12:00</div>
+              <div class="timeline-title">📤 Benefits & Working Setup Benchmark Report</div>
+              <div class="timeline-desc">Enviado a Pedro Santos com +5 PDFs de estudos salariais</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot yellow"></div>
+              <div class="timeline-date">03 Abr 2026 — 02:18</div>
+              <div class="timeline-title">📋 RDKM | Hexa Sync Aceite — Zlatko Sator</div>
+              <div class="timeline-desc">Sync semanal RDK aceite e agendado</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot red"></div>
+              <div class="timeline-date">02 Abr 2026 — 15:34</div>
+              <div class="timeline-title">🔥 Apoio Urgente — Senior PM MEO Agite</div>
+              <div class="timeline-desc">Pedro Santos solicitou Senior PM. Daniel confirmado a 324€/dia, Clara para gestão</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot red"></div>
+              <div class="timeline-date">25 Mar 2026 — 09:00</div>
+              <div class="timeline-title">⚠️ Confusão Split Resources — PO 4514455685</div>
+              <div class="timeline-desc">Augusto enviou pedido de compra mas manifestou confusão sobre split Labs/Consulting</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOGBOOK TAB -->
+      <div class="tab-content" id="tab-logbook">
+        <div class="section">
+          <div class="section-header">
+            <span class="section-icon">📒</span>
+            <div class="section-title">Logbook Diário</div>
+          </div>
+          <div class="logbook-entry">
+            <div class="logbook-date">📅 Sábado, 04 Abril 2026</div>
+            <div class="logbook-items">
+              <div class="logbook-item">✅ RDK Comcast: Acesso Jira concedido — testar login</div>
+              <div class="logbook-item">📋 Board Hexa Labs: Meeting aceite com Diogo Oliveira</div>
+              <div class="logbook-item">📋 RDKM | Hexa sync: Agendado semanal com Zlatko</div>
+              <div class="logbook-item">🔍 Inbox scan completo realizado: 720 não lidos analisados</div>
+              <div class="logbook-item">📊 Dashboard de Inteligência criado e publicado no GitHub Pages</div>
+            </div>
+          </div>
+          <div class="logbook-entry">
+            <div class="logbook-date">📅 Sexta, 03 Abril 2026</div>
+            <div class="logbook-items">
+              <div class="logbook-item">📤 Enviado: Benefits & Working Setup Benchmark Report a Pedro Santos (+5 PDFs)</div>
+              <div class="logbook-item">📋 Meetings aceites: Board Hexa Labs, Board Hexa Consulting, Board Geral Hexa</div>
+              <div class="logbook-item">📧 Outlook reaction: Pedro reagiu 😂 a "Marta = Maria ;)"</div>
+              <div class="logbook-item">🧹 Limpar inbox: Job agendado para Gmail (Google API)</div>
+            </div>
+          </div>
+          <div class="logbook-entry">
+            <div class="logbook-date">📅 Quinta, 02 Abril 2026</div>
+            <div class="logbook-items">
+              <div class="logbook-item">🔥 Apoio Urgente: Pedro Santos pediu Senior PM para MEO Agite</div>
+              <div class="logbook-item">✅ Daniel Finnegan confirmado como Senior PM (324€/dia, Consulting → Labs)</div>
+              <div class="logbook-item">✅ Clara onboarded na Hexa Labs para gestão MEO Agite</div>
+              <div class="logbook-item">⚠️ Flash Business Case MEO Agite: Financiamento bancário</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // Priority filter
+    function setFilter(priority, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(c => {
+        if (priority === 'all' || c.dataset.priority === priority) {
+          c.style.display = '';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    // Search
+    function filterCards(query) {
+      const q = query.toLowerCase();
+      document.querySelectorAll('.card').forEach(c => {
+        const search = (c.dataset.search || '') + ' ' + c.textContent;
+        c.style.display = search.toLowerCase().includes(q) ? '' : 'none';
+      });
+      document.querySelectorAll('.action-item').forEach(a => {
+        const search = (a.dataset.search || '') + ' ' + a.textContent;
+        a.style.display = search.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+
+    // Project filter from sidebar
+    function filterByProject(project) {
+      document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(c => {
+        c.style.display = (c.dataset.project === project || !project) ? '' : 'none';
+      });
+      // Switch to projects tab if not already
+      switchTab('projects', document.querySelectorAll('.tab-btn')[1]);
+    }
+
+    // Scroll helper
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Mobile sidebar toggle
+    function toggleSidebarMobile() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+</body>
+</html>
