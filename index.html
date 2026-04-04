@@ -40,6 +40,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .tag{padding:3px 8px;background:var(--bg2);border-radius:4px;font-size:0.65rem;}
 .tag.hn{border:1px solid #ff6600;color:#ff6600;}
 .tag.yt{border:1px solid #ff0000;color:#ff0000;}
+.tag.hot{border:1px solid var(--green);color:var(--green);}
+.score{color:var(--orange);font-weight:600;}
 .footer{text-align:center;padding:20px;color:var(--muted);font-size:0.8rem;border-top:1px solid var(--border);margin-top:30px;}
 @media(max-width:768px){.header{flex-direction:column;gap:12px;}.grid{grid-template-columns:1fr;}.thumb{width:100px;height:56px;}}
 </style>
@@ -47,136 +49,176 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <body>
 <div class="container">
 <header class="header">
-<div><h1>🤖 Hermes Intelligence Hub</h1><p>Real-time AI, Tech & Geopolitics Intelligence</p></div>
-<div class="live"><span class="dot"></span> LIVE — 2026-04-04 16:25 UTC</div>
+<div><h1>🤖 Hermes Intelligence Hub</h1><p>Real-time AI, Tech & Geopolitics • Sorted by Date + Relevance</p></div>
+<div class="live"><span class="dot"></span> LIVE — 2026-04-04 16:55 UTC</div>
 </header>
 <div class="stats">
 <div class="stat blue"><label>News</label><div>7</div></div>
-<div class="stat purple"><label>Videos</label><div>15</div></div>
-<div class="stat green"><label>Pipeline</label><div>41</div></div>
-<div class="stat orange"><label>Efficiency</label><div>0.75%</div></div>
+<div class="stat purple"><label>Videos (60m)</label><div>20</div></div>
+<div class="stat green"><label>Pipeline</label><div>✓</div></div>
+<div class="stat orange"><label>Sort</label><div>Date+Relevance</div></div>
 </div>
-<h2 class="section">📺 Latest Videos (15 with thumbnails)</h2>
+<h2 class="section">📺 Latest Videos (by publication date + relevance)</h2>
 <div class="grid">
 
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/9zpRULZQssI/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/X7_OfANCuVg/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=9zpRULZQssI" target="_blank">You're being misled about what AI can actually do</a></h3>
-<p>Relevance: 6 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
+<h3><a href="https://youtube.com/watch?v=X7_OfANCuVg" target="_blank">Rent is Free in South Korea. What’s the Catch?</a></h3>
+<p><span class="tag ">🕐 16:47</span> • <span class="score">★ 4</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★4</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/dmtvGKuRE64/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/BD-rLIz9XUo/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=dmtvGKuRE64" target="_blank">Anthropic vs. The Pentagon, Claude Outpaces ChatGPT, and Consulti</a></h3>
-<p>Relevance: 6 pts • 16:06</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
+<h3><a href="https://youtube.com/watch?v=BD-rLIz9XUo" target="_blank">The Downfall of Southwest Airlines</a></h3>
+<p><span class="tag ">🕐 16:46</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/a_T5fjA2ulY/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/5myl2x0wblo/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=a_T5fjA2ulY" target="_blank">AI News: Claude Can Now Control Your Computer!</a></h3>
-<p>Relevance: 6 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
+<h3><a href="https://youtube.com/watch?v=5myl2x0wblo" target="_blank">The $2BN Stadium Dividing America</a></h3>
+<p><span class="tag ">🕐 16:46</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/4dZ0VYjB8N8/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/bzTntRHmpa8/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=4dZ0VYjB8N8" target="_blank">This Free App Runs AI Offline On Your iPhone</a></h3>
-<p>Relevance: 6 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
+<h3><a href="https://youtube.com/watch?v=bzTntRHmpa8" target="_blank">Switzerland’s $2BN Tunnel U-Turn</a></h3>
+<p><span class="tag ">🕐 16:46</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/9f2egsZZjnw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/nol0_4qxzb0/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=9f2egsZZjnw" target="_blank">New Claude & GPT Models Just Dropped (It's War!)</a></h3>
-<p>Relevance: 6 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 6</span></div>
+<h3><a href="https://youtube.com/watch?v=nol0_4qxzb0" target="_blank">The Hidden Engineering of Floating Bridges</a></h3>
+<p><span class="tag ">🕐 16:46</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/1roSPMSnCBw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/PhW2BjFQCZM/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=1roSPMSnCBw" target="_blank">Claude just got caught...</a></h3>
-<p>Relevance: 5 pts • 16:06</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=PhW2BjFQCZM" target="_blank">The Los Angeles Aqueduct is Wild</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/lq_2axxlYRw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/Ssw5bdx1HKw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=lq_2axxlYRw" target="_blank">How Iran Controls the Strait of Hormuz With These Islands | WSJ</a></h3>
-<p>Relevance: 5 pts • 16:24</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=Ssw5bdx1HKw" target="_blank">So You Want to Build a Tunnel...</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/7LinUW0CGE0/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/xPksDeGoh4E/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=7LinUW0CGE0" target="_blank">What Trump Could Do With Marines in the Iran War | WSJ</a></h3>
-<p>Relevance: 5 pts • 16:24</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=xPksDeGoh4E" target="_blank">Do Retention Ponds Actually Work?</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/jWsd2fRzpUo/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/ZJqY1WLX4zA/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=jWsd2fRzpUo" target="_blank">AI Accelerates: New Gemini Model + AI Unemployment Stories Analys</a></h3>
-<p>Relevance: 5 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=ZJqY1WLX4zA" target="_blank">The Hidden Engineering of Runways</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/iO844izo9kw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/qt2j2gn0yWc/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=iO844izo9kw" target="_blank">You Are Being Told Contradictory Things About AI</a></h3>
-<p>Relevance: 5 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=qt2j2gn0yWc" target="_blank">How Earthquake Bearings Work</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/ORW9FumLGBo/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/5KXFYjKvr4k/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=ORW9FumLGBo" target="_blank">Anthropic just dropped Opus 4.6...</a></h3>
-<p>Relevance: 5 pts • 16:06</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=5KXFYjKvr4k" target="_blank">John Bolton says Trump has lost the Iran war hawks | Today, Expla</a></h3>
+<p><span class="tag hot">🕐 16:45</span> • <span class="score">★ 5</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★5</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/s4tptozUJ8Y/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/QtiTjXuZh30/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=s4tptozUJ8Y" target="_blank">Two AI Models Set to “stir government urgency”, But Will This Cha</a></h3>
-<p>Relevance: 5 pts • 16:22</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=QtiTjXuZh30" target="_blank">A brief update on the AI apocalypse</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/8eqdMpCz9tc/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/3qrolpkyOHc/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=8eqdMpCz9tc" target="_blank">Is GPT-5.1 Really an Upgrade? But Models Can Auto-Hack Govts, so </a></h3>
-<p>Relevance: 5 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=3qrolpkyOHc" target="_blank">Why humans need to matter</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/taLzgvbrnv0/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/_5FY6h4wg6M/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=taLzgvbrnv0" target="_blank">Will America go to war with Iran?</a></h3>
-<p>Relevance: 5 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=_5FY6h4wg6M" target="_blank">The end of birthright citizenship as we know it?</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
 </div>
 </div>
 <div class="card">
-<img class="thumb" src="https://img.youtube.com/vi/dbgL00a7_xs/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<img class="thumb" src="https://img.youtube.com/vi/lcCDO7nvNyE/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://youtube.com/watch?v=dbgL00a7_xs" target="_blank">Grok 4 - 10 New Things to Know</a></h3>
-<p>Relevance: 5 pts • 16:07</p>
-<div class="meta"><span class="tag yt">▶ YouTube</span><span>★ 5</span></div>
+<h3><a href="https://youtube.com/watch?v=lcCDO7nvNyE" target="_blank">How we standardized music</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb" src="https://img.youtube.com/vi/6d2h9ZM9ofY/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://youtube.com/watch?v=6d2h9ZM9ofY" target="_blank">Sen. Murphy vs. political corruption | Today, Explained</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb" src="https://img.youtube.com/vi/GL-MPhghHRI/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://youtube.com/watch?v=GL-MPhghHRI" target="_blank">How China Accidentally Created a Billion Dollar Scam Industry</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb" src="https://img.youtube.com/vi/Di5rmpD03iM/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://youtube.com/watch?v=Di5rmpD03iM" target="_blank">What Xi Jinping Fears More than America</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb" src="https://img.youtube.com/vi/vEH4yo7PqzM/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://youtube.com/watch?v=vEH4yo7PqzM" target="_blank">America’s Self-Inflicted Doctor Shortage</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 1</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★1</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb" src="https://img.youtube.com/vi/tFjvMTtbGHw/hqdefault.jpg" alt="thumbnail" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://youtube.com/watch?v=tFjvMTtbGHw" target="_blank">Why Puerto Rico’s Economy Doesn’t Work</a></h3>
+<p><span class="tag ">🕐 16:45</span> • <span class="score">★ 2</span> relevance</p>
+<div class="meta"><span class="tag yt">▶ YouTube</span><span class="score">★2</span></div>
 </div>
 </div>
 </div>
@@ -187,7 +229,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
 <h3><a href="https://arxiv.org/abs/2604.01193" target="_blank">Simple self-distillation improves code generation</a></h3>
-<p>🔥 272 pts · 💬 75 comments</p>
+<p>🔥 291 pts</p>
 <div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
@@ -195,23 +237,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
 <h3><a href="https://www.thetimes.com/uk/technology-uk/article/sarah-wynn-williams-careless-people-meta-nrffdfpmf" target="_blank">Author of "Careless People" banned from saying anything negative about Meta</a></h3>
-<p>🔥 48 pts · 💬 5 comments</p>
-<div class="meta"><span class="tag hn">HackerNews</span></div>
-</div>
-</div>
-<div class="card">
-<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
-<div class="content">
-<h3><a href="https://mtlynch.io/claude-code-found-linux-vulnerability/" target="_blank">Claude Code Found a Linux Vulnerability Hidden for 23 Years</a></h3>
-<p>🔥 176 pts · 💬 102 comments</p>
-<div class="meta"><span class="tag hn">HackerNews</span></div>
-</div>
-</div>
-<div class="card">
-<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
-<div class="content">
-<h3><a href="https://www.youtube.com/watch?v=hyjCmIbRRvs" target="_blank">Why Inventing Color TV Was So Difficult [video]</a></h3>
-<p>🔥 26 pts · 💬 7 comments</p>
+<p>🔥 151 pts</p>
 <div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
@@ -219,15 +245,23 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
 <h3><a href="https://thoughts.wyounas.com/p/some-unusual-trees" target="_blank">Some Unusual Trees</a></h3>
-<p>🔥 124 pts · 💬 34 comments</p>
+<p>🔥 129 pts</p>
 <div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 <div class="card">
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
-<h3><a href="https://www.woman-of-letters.com/p/the-most-disliked-people-in-the-publishing" target="_blank">The most-disliked people in the publishing industry</a></h3>
-<p>🔥 51 pts · 💬 11 comments</p>
+<h3><a href="https://www.youtube.com/watch?v=hyjCmIbRRvs" target="_blank">Why Inventing Color TV Was So Difficult [video]</a></h3>
+<p>🔥 31 pts</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://magazine.sebastianraschka.com/p/components-of-a-coding-agent" target="_blank">Components of a Coding Agent</a></h3>
+<p>🔥 18 pts</p>
 <div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
@@ -235,14 +269,22 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
 <div class="content">
 <h3><a href="https://www.dbreunig.com/2026/03/26/winchester-mystery-house.html" target="_blank">The Cathedral, the Bazaar, and the Winchester Mystery House</a></h3>
-<p>🔥 75 pts · 💬 25 comments</p>
+<p>🔥 82 pts</p>
+<div class="meta"><span class="tag hn">HackerNews</span></div>
+</div>
+</div>
+<div class="card">
+<img class="thumb-sm" src="https://news.ycombinator.com/favicon.ico" alt="favicon" loading="lazy" onerror="this.style.display='none'">
+<div class="content">
+<h3><a href="https://github.com/teamchong/turboquant-wasm" target="_blank">Show HN: TurboQuant-WASM – Google's vector quantization in the browser</a></h3>
+<p>🔥 7 pts</p>
 <div class="meta"><span class="tag hn">HackerNews</span></div>
 </div>
 </div>
 </div>
 <footer class="footer">
-<p>🤖 Hermes Agent • Auto-managed Intelligence Pipeline</p>
-<p>Updated: 2026-04-04 16:25 UTC</p>
+<p>🤖 Hermes Agent • Auto-managed • Sorted by Date + Relevance</p>
+<p>Updated: 2026-04-04 16:55 UTC</p>
 </footer>
 </div>
 </body>
