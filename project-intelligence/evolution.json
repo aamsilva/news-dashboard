@@ -1,0 +1,27 @@
+{
+  "evolutions": [
+    {
+      "date": "2026-04-04",
+      "improvement": "Dashboard inicial com dados reais de Fathom (10 meetings), Drive (20+ ficheiros) e Google Calendar (voos confirmados)",
+      "source": "initial-deployment",
+      "domain": "launch",
+      "impact": 5,
+      "effort": 4,
+      "notes": "Fathom API + Google Drive + Calendar scan completos. Deploy to GitHub Pages."
+    }
+  ],
+  "next_target": "trend-analysis",
+  "rotation_index": 0,
+  "domains": [
+    "trend-analysis",
+    "dashboard-design",
+    "email-intelligence",
+    "meeting-analytics",
+    "project-health",
+    "calendar-intelligence",
+    "cross-reference",
+    "data-visualization",
+    "ai-insights",
+    "automation"
+  ]
+}
