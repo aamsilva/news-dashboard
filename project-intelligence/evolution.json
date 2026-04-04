@@ -8,10 +8,19 @@
       "impact": 5,
       "effort": 4,
       "notes": "Fathom API + Google Drive + Calendar scan completos. Deploy to GitHub Pages."
+    },
+    {
+      "date": "2026-04-05",
+      "improvement": "Added Email Attachments Intelligence section (4 key emails with PDF/Excel/Word attachments) + CUF Project Timeline (4 meetings + 1 upcoming Apr 10)",
+      "source": "autonomous-run",
+      "domain": "email-intelligence",
+      "impact": 5,
+      "effort": 2,
+      "notes": "Cross-referenced Outlook with Fathom+Drive. CUF presentation scheduled for Apr 10 @ 16:00 at CUF offices."
     }
   ],
-  "next_target": "trend-analysis",
-  "rotation_index": 0,
+  "next_target": "meeting-analytics",
+  "rotation_index": 1,
   "domains": [
     "trend-analysis",
     "dashboard-design",
