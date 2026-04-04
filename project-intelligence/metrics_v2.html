@@ -204,30 +204,30 @@
   <div class="topbar">
     <a href="index.html" class="back-link">← Dashboard</a>
     <h1>📈 <span>Métricas</span> & Organização</h1>
-    <div class="updated">🔄 Atualizado: 04 Abr 2026, 23:45 UTC — Dados reais Fathom+Drive+Calendar</div>
+    <div class="updated">🔄 Atualizado: 04 Abr 2026, 23:00 UTC</div>
   </div>
   <!-- Stats -->
   <div class="stats-bar">
     <div class="stats-grid">
       <div class="stat-item">
-        <div class="stat-value" style="color:var(--warning)">755</div>
-        <div class="stat-label">Total Emails Analisados</div>
+        <div class="stat-value" style="color:var(--success)">10</div>
+        <div class="stat-label">Meetings Fathom</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value" style="color:var(--info)">720</div>
-        <div class="stat-label">Unread Inbox</div>
+        <div class="stat-value" style="color:var(--warning)">755</div>
+        <div class="stat-label">Total Emails</div>
       </div>
       <div class="stat-item">
         <div class="stat-value" style="color:var(--purple)">54</div>
         <div class="stat-label">Drafts Pendentes</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value" style="color:var(--success)">10</div>
-        <div class="stat-label">Meetings Fathom</div>
+        <div class="stat-value" style="color:var(--info)">20+</div>
+        <div class="stat-label">Drive Files</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value" style="color:var(--danger)">20+</div>
-        <div class="stat-label">Drive Files Transcripts</div>
+        <div class="stat-value" style="color:var(--accent)">6</div>
+        <div class="stat-label">Follow-ups</div>
       </div>
       <div class="stat-item">
         <div class="stat-value" style="color:var(--accent)">82</div>
@@ -256,7 +256,7 @@
             <div class="chart-bar-row">
               <div class="chart-bar-label">🟡 Follow-ups</div>
               <div class="chart-bar-track">
-                <div class="chart-bar-value" style="width:4%;background:var(--warning)">20+</div>
+                <div class="chart-bar-value" style="width:4%;background:var(--warning)">6</div>
               </div>
             </div>
             <div class="chart-bar-row">
@@ -334,9 +334,9 @@
             <tr>
               <td>04/04/2026</td>
               <td>720</td>
-              <td>755</td>
+              <td>35</td>
               <td>~200</td>
-              <td>20+</td>
+              <td>6</td>
               <td>0</td>
               <td><span class="badge badge-blue">Baseline</span></td>
             </tr>
@@ -368,23 +368,25 @@
       <div class="section-header">
         <span>🎙️</span>
         <div class="section-title">Meeting Transcripts — Fathom & Google Drive</div>
-        <div class="section-count">10 meetings | 6 summaries | 20+ Drive files</div>
+        <div class="section-count">Scan pendente</div>
       </div>
       <div class="card-grid">
         <div class="card">
-          <div class="card-title">🔍 Fathom API — Scan Completo ✅</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0">
-            <div style="text-align:center"><span style="color:var(--success);font-weight:800;font-size:24px">10</span><br><span style="font-size:11px;color:var(--text-muted)">Meetings</span></div>
-            <div style="text-align:center"><span style="color:var(--info);font-weight:800;font-size:24px">6</span><br><span style="font-size:11px;color:var(--text-muted)">Com Summary</span></div>
-            <div style="text-align:center"><span style="color:var(--success);font-weight:800;font-size:24px">28KB</span><br><span style="font-size:11px;color:var(--text-muted)">Texto Total</span></div>
+          <div class="card-title">🔍 Fathom API</div>
+          <div class="empty-state">
+            <div class="icon">📋</div>
+            <div>Primeiro scan Fathom agendado para 05/04/2026</div>
+            <div style="font-size:12px;margin-top:8px;color:var(--text-muted)">Transcripts: <strong style="color:var(--warning)">— por verificar —</strong></div>
+            <div style="font-size:12px;margin-top:4px;color:var(--text-muted)">Action items: <strong style="color:var(--warning)">— por extrair —</strong></div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">📁 Google Drive — 20+ Ficheiros ✅</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:8px 0">
-            <div style="text-align:center"><span style="color:var(--success);font-weight:800;font-size:24px">10</span><br><span style="font-size:11px;color:var(--text-muted)">Meetings</span></div>
-            <div style="text-align:center"><span style="color:var(--info);font-weight:800;font-size:24px">6</span><br><span style="font-size:11px;color:var(--text-muted)">Com Summary</span></div>
-            <div style="text-align:center"><span style="color:var(--success);font-weight:800;font-size:24px">28KB</span><br><span style="font-size:11px;color:var(--text-muted)">Texto Total</span></div>
+          <div class="card-title">📁 Google Drive — Meeting Archive</div>
+          <div class="empty-state">
+            <div class="icon">📂</div>
+            <div>Primeira verificação da pasta Meeting Archive agendada</div>
+            <div style="font-size:12px;margin-top:8px;color:var(--text-muted)">Arquivos: <strong style="color:var(--warning)">— por verificar —</strong></div>
+            <div style="font-size:12px;margin-top:4px;color:var(--text-muted)">Cross-reference: <strong style="color:var(--warning)">— por fazer —</strong></div>
           </div>
         </div>
       </div>
@@ -403,84 +405,9 @@
           </thead>
           <tbody>
             <tr>
-              <td>01/04</td>
-              <td><a href="https://fathom.video/calls/622669234" target="_blank" style="color:var(--info);text-decoration:none">HL Slides AI - Use cases</a></td>
-              <td><span class="badge badge-green">Fathom</span></td>
-              <td>3 pillars: AI Dev, DAF, Eng Teams. POCs Cofidis/EDP/AT</td>
-              <td><a href="https://drive.google.com/file/d/1NFFIKf4ZlvK3Wp12hj-8sKi9U43lW3Aj" target="_blank" style="color:var(--info)">.txt</a> + <a href="https://drive.google.com/file/d/1NFFIKf4ZlvK3Wp12hj-8sKi9U43lW3Aj" target="_blank" style="color:var(--purple)">.doc</a></td>
-              <td><span class="badge badge-green">10.3KB ✅</span></td>
-            </tr>
-            <tr>
-              <td>31/03</td>
-              <td><a href="https://fathom.video/calls/619305845" target="_blank" style="color:var(--info);text-decoration:none">Weekly Sync - Augusto & Pedro</a></td>
-              <td><span class="badge badge-green">Fathom</span></td>
-              <td>Preocupação c/ structure Comcast, cost-sharing reform</td>
-              <td><a href="https://drive.google.com/file/d/1ZOp1Sz8E2fWVjoiLW5pHKaftwV_rlxEt" target="_blank" style="color:var(--info)">.txt</a></td>
-              <td><span class="badge badge-green">2KB ✅</span></td>
-            </tr>
-            <tr>
-              <td>31/03</td>
-              <td>Business Meeting (S)</td>
-              <td><span class="badge badge-blue">Drive</span></td>
-              <td>Google Doc + .txt disponíveis</td>
-              <td><a href="https://drive.google.com/file/d/1ZmLqm9QLsI1VXgYZexaREmSst6nfJRxp" target="_blank" style="color:var(--info)">.txt</a></td>
-              <td><span class="badge badge-yellow">0 chars ⚠️</span></td>
-            </tr>
-            <tr>
-              <td>30/03</td>
-              <td><a href="https://fathom.video/calls/617672881" target="_blank" style="color:var(--info);text-decoration:none">Follow-up: CUF</a></td>
-              <td><span class="badge badge-green">Fathom</span></td>
-              <td>Remote vs in-person balance, PPT vs Word deliverable</td>
-              <td><a href="https://drive.google.com/file/d/15zE8M87th0g9eyWhg5cw2OhT-FGx7zI9" target="_blank" style="color:var(--info)">.txt</a></td>
-              <td><span class="badge badge-green">2.5KB ✅</span></td>
-            </tr>
-            <tr>
-              <td>27/03</td>
-              <td><a href="https://fathom.video/calls/616048100" target="_blank" style="color:var(--info);text-decoration:none">Follow-up: Hexa & CUF</a></td>
-              <td><span class="badge badge-green">Fathom</span></td>
-              <td>Staffing QA model, 12-month knowledge transfer plan</td>
-              <td><a href="https://drive.google.com/file/d/1eVNKOVsjOFECtaGPV0dme7GnJUyr5SJh" target="_blank" style="color:var(--info)">.txt</a></td>
-              <td><span class="badge badge-green">1.8KB ✅</span></td>
-            </tr>
-            <tr>
-              <td>27/03</td>
-              <td><a href="https://fathom.video/calls/614954532" target="_blank" style="color:var(--info);text-decoration:none">Weekly Sync - Augusto & Pedro</a></td>
-              <td><span class="badge badge-green">Fathom</span></td>
-              <td>Revolut setup, documenting financial processes, €15K shared services</td>
-              <td><span class="badge badge-yellow">0 chars ⚠️</span></td>
-              <td><span class="badge badge-green">2KB ✅</span></td>
-            </tr>
-            <tr>
-              <td>26/03</td>
-              <td><a href="https://fathom.video/calls/615877529" target="_blank" style="color:var(--info);text-decoration:none">Hexa CUF</a></td>
-              <td><span class="badge badge-green">Fathom</span></td>
-              <td>QA automation, 1600 manual tests → automation target</td>
-              <td><span class="badge badge-yellow">0 chars ⚠️</span></td>
-              <td><span class="badge badge-green">2.1KB ✅</span></td>
-            </tr>
-            <tr>
-              <td>26/03</td>
-              <td>RH|Hexa Group</td>
-              <td><span class="badge badge-blue">Drive</span></td>
-              <td>Octet-stream — conteúdo não analisado</td>
-              <td><span class="badge badge-yellow">binário</span></td>
-              <td><span class="badge badge-purple">Pendente</span></td>
-            </tr>
-            <tr>
-              <td>25/03</td>
-              <td>Revolut Business - Onboarding HL</td>
-              <td><span class="badge badge-blue">Drive</span></td>
-              <td>Octet-stream — conteúdo não analisado</td>
-              <td><span class="badge badge-yellow">binário</span></td>
-              <td><span class="badge badge-purple">Pendente</span></td>
-            </tr>
-            <tr>
-              <td>24/03</td>
-              <td>Business Meeting (O)</td>
-              <td><span class="badge badge-blue">Drive</span></td>
-              <td>Octet-stream — conteúdo não analisado</td>
-              <td><span class="badge badge-yellow">binário</span></td>
-              <td><span class="badge badge-purple">Pendente</span></td>
+              <td colspan="6" style="text-align:center;color:var(--text-muted);padding:24px">
+                Transcripts serão adicionados após scan automático 🔄 Agendado: 05/04/2026
+              </td>
             </tr>
           </tbody>
         </table>
@@ -492,7 +419,7 @@
       <div class="section-header">
         <span>💬</span>
         <div class="section-title">Teams Chat Metrics</div>
-        <div class="section-count">10 meetings | 6 summaries | 20+ Drive files</div>
+        <div class="section-count">Scan pendente</div>
       </div>
       <div class="card">
         <div class="card-title">Mensagens & Follow-ups em Chats Diretos</div>
@@ -524,7 +451,7 @@
             </div>
             <div>
               <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase">Próximos 7 dias</div>
-              <div style="font-size:28px;font-weight:800;color:var(--info)">10</div>
+              <div style="font-size:28px;font-weight:800;color:var(--info)">4</div>
             </div>
             <div>
               <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase">Sem agenda definida</div>
@@ -623,7 +550,7 @@
       </div>
 
       <div class="overall-score">
-        <div class="big">82</div>
+        <div class="big">65</div>
         <div class="label">Health Score Geral</div>
         <div class="trend">📈 Melhorando — análise inicial completa, automação ativa</div>
         <div class="max">Score potencial: 85/100 após processar actions pendentes</div>
