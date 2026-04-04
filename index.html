@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📰 News Intelligence Hub — April 4, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: linear-gradient(135deg, #0a0a1a, #1a0a2e, #0a1a2e);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    padding: 24px;
+    color: #e0e0e0;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 24px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .header h1 {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #00d2ff, #7b2ff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header p { color: #888; font-size: 0.9rem; }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px 24px;
+    text-align: center;
+    min-width: 140px;
+  }
+  .stat .num { font-size: 1.8rem; font-weight: 700; color: #00d2ff; }
+  .stat .label { font-size: 0.75rem; color: #999; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    padding-left: 12px;
+    border-left: 4px solid #7b2ff7;
+    color: #ccc;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); border-color: rgba(0,210,255,0.4); }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .cat-badge {
+    background: rgba(123,47,247,0.2);
+    border: 1px solid rgba(123,47,247,0.3);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+  .score {
+    margin-left: auto;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #00d2ff;
+    font-family: monospace;
+  }
+  .card h3 {
+    font-size: 1.0rem;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .card h3 a {
+    color: #e0e0e0;
+    text-decoration: none;
+  }
+  .card h3 a:hover { color: #00d2ff; }
+  .impact {
+    font-size: 0.82rem;
+    color: #999;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: #666;
+  }
+  .footer a { color: #7b2ff7; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  .footer .engagement { color: #FF9500; }
+
+  .hn-card { border-left: 3px solid #FF6600; }
+  .security-card { border-left: 3px solid #FF3B30; }
+  .ai-policy-card { border-left: 3px solid #FF9500; }
+  .infra-card { border-left: 3px solid #34C759; }
+  .market-card { border-left: 3px solid #AF52DE; }
+  .science-card { border-left: 3px solid #00D4FF; }
+
+  .last-updated {
+    text-align: center;
+    margin-top: 40px;
+    color: #555;
+    font-size: 0.8rem;
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>📰 News Intelligence Hub — Fresh Dashboard</h1>
+    <p>🕐 2026-04-04 10:39 UTC · Sources: HN Front, Reuters, Tech Startups, Fortune, MIT News, The Guardian</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="num">15</div><div class="label">Top Stories</div></div>
+    <div class="stat"><div class="num">7</div><div class="label">Categories</div></div>
+    <div class="stat"><div class="num">7</div><div class="label">Sources Queried</div></div>
+    <div class="stat"><div class="num">🔄</div><div class="label">Just Refreshed</div></div>
+  </div>
+
+  <!-- 🔴 BREAKING / GEOPOLÍTICA -->
+  <div class="section-title">🔴 Breaking / Geopolítica</div>
+  <div class="grid">
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">⚔️ Conflito</span><span class="score">⭐ 1,105 💬</span></div>
+      <h3><a href="https://www.theguardian.com" target="_blank">F-15E jet shot down over Iran — 1,105 comments on HN</a></h3>
+      <p class="impact">Escalada militar EUA-Irão domina o ciclo de notícias — avião de combate abatido gera debate massivo.</p>
+      <div class="footer"><span>📌 The Guardian / HN Front</span><a href="https://www.theguardian.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">⚔️ Geopolítica</span><span class="score">2,800+ 💬</span></div>
+      <h3><a href="https://apnews.com" target="_blank">Trump Admin appeals ruling blocking Pentagon action vs Anthropic</a></h3>
+      <p class="impact">Pentágono tentou classificar Anthropic como risco na cadeia de suprimentos e phase out Claude. Juíza chamou medidas de "arbitrárias".</p>
+      <div class="footer"><span>📌 AP / Tech Startups</span><a href="https://apnews.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">⚔️ Geopolítica</span><span class="score">💬 135</span></div>
+      <h3><a href="https://politico.eu" target="_blank">Critics say EU risks ceding control of its tech laws under U.S. pressure</a></h3>
+      <p class="impact">UE sob pressão americana sobre legislação tech — debate sobre soberania digital europeia.</p>
+      <div class="footer"><span>📌 Politico / HN Front</span><a href="https://politico.eu" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">🚀 Espaço</span><span class="score">⭐ 780 💬</span></div>
+      <h3><a href="https://www.bbc.com/news" target="_blank">Artemis II crew take "spectacular" image of Earth</a></h3>
+      <p class="impact">Tripulação Artemis II captura imagem espetacular da Terra — primeira missão lunar tripulada em 50 anos.</p>
+      <div class="footer"><span>📌 BBC / HN #1</span><a href="https://www.bbc.com/news" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+  <!-- 💻 AI POLICY & REGULATION -->
+  <div class="section-title">🏛️ AI Policy & Regulação</div>
+  <div class="grid">
+    <div class="card ai-policy-card">
+      <div class="card-header"><span class="cat-badge">🏛️ Regulação</span><span class="score">$10B</span></div>
+      <h3><a href="https://www.reuters.com/technology/artificial-intelligence/" target="_blank">Microsoft Commits $10B to Japan — AI infra & cyber defense (2026–2029)</a></h3>
+      <p class="impact">AI como infraestrutura nacional crítica — alinhamento geopolítico rivaliza com qualidade de modelo como moat competitivo.</p>
+      <div class="footer"><span>📌 Reuters</span><a href="https://www.reuters.com/technology/artificial-intelligence/" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card ai-policy-card">
+      <div class="card-header"><span class="cat-badge">🏛️ Regulação</span><span class="score">🏛️ CA</span></div>
+      <h3><a href="https://apnews.com" target="_blank">California Orders AI Harm Accountability in Gov Contracting</a></h3>
+      <p class="impact">Newsom manda standards contra CSAM, violações de direitos civis, vigilância ilegal. Watermarking e acesso GenAI vetado.</p>
+      <div class="footer"><span>📌 AP</span><a href="https://apnews.com" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+  <!-- 💰 CAPITAL MARKETS -->
+  <div class="section-title">💰 Capital Markets & Funding</div>
+  <div class="grid">
+    <div class="card market-card">
+      <div class="card-header"><span class="cat-badge">💰 IPO</span><span class="score">$75B</span></div>
+      <h3><a href="https://www.reuters.com" target="_blank">SpaceX Explores $5B Saudi Anchor for Record $75B IPO</a></h3>
+      <p class="impact">Potencial IPO recorde — borracha linha entre capital tech Startup e financiamento soberano-scale.</p>
+      <div class="footer"><span>📌 Reuters</span><a href="https://www.reuters.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card market-card">
+      <div class="card-header"><span class="cat-badge">💰 Startup</span><span class="score">$1.8B</span></div>
+      <h3><a href="https://www.nytimes.com" target="_blank">Solo AI Startup Medvi Hits $1.8B Valuation</a></h3>
+      <p class="impact">Construída por equipa excecionalmente pequena com ferramentas AI avançadas — desafia assumptions VC sobre headcount.</p>
+      <div class="footer"><span>📌 NYT</span><a href="https://www.nytimes.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card market-card">
+      <div class="card-header"><span class="cat-badge">💰 Startup</span><span class="score">$1.5B</span></div>
+      <h3><a href="https://www.bloomberg.com" target="_blank">India's Sarvam AI Nears $1.5B Valuation — Raising $300M–$350M</a></h3>
+      <p class="impact">Corrida AI global está a alargar-se — players regionais (idioma, policy, enterprise) capturam capital sério.</p>
+      <div class="footer"><span>📌 Bloomberg</span><a href="https://www.bloomberg.com" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+  <!-- 🔬 SCIENCE & ECONOMICS -->
+  <div class="section-title">🔬 Ciência & Economia AI</div>
+  <div class="grid">
+    <div class="card science-card">
+      <div class="card-header"><span class="cat-badge">📊 Economia</span><span class="score">Yale</span></div>
+      <h3><a href="https://fortune.com/2026/04/04/ai-jobs-future-not-important-enough-to-be-automated-yale/" target="_blank">Yale Economist: AGI Won't Automate Most Jobs — They're Not Worth the Compute</a></h3>
+      <p class="impact">Pascual Restrepo (NBER): bottleneck passa de skilled labor para compute. Labor's share of GDP → 0. Eletricistas em data centers: $260K/yr. EUA precisam 500K eletricistas na próxima década.</p>
+      <div class="footer"><span>📌 Fortune / NBER</span><a href="https://fortune.com/2026/04/04/ai-jobs-future-not-important-enough-to-be-automated-yale/" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card science-card">
+      <div class="card-header"><span class="cat-badge">🔬 MIT</span><span class="score">🏥</span></div>
+      <h3><a href="https://news.mit.edu/topic/artificial-intelligence2" target="_blank">MIT: How to Create "Humble" AI for Medical Diagnosis</a></h3>
+      <p class="impact">Sistemas AI para diagnóstico médico mais colaborativos e transparentes sobre incerteza.</p>
+      <div class="footer"><span>📌 MIT News</span><a href="https://news.mit.edu/topic/artificial-intelligence2" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card science-card">
+      <div class="card-header"><span class="cat-badge">📚 Wikipedia</span><span class="score">🚫 AI</span></div>
+      <h3><a href="https://www.theguardian.com/technology/artificialintelligenceai" target="_blank">Wikipedia Bans AI-Generated Content in Its Online Encyclopedia</a></h3>
+      <p class="impact">Wikipedia proíbe conteúdo gerado por AI — marco na luta contra desinformação automática.</p>
+      <div class="footer"><span>📌 The Guardian</span><a href="https://www.theguardian.com/technology/artificialintelligenceai" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+  <!-- 🔒 SECURITY -->
+  <div class="section-title">🔒 Segurança Tech</div>
+  <div class="grid">
+    <div class="card security-card">
+      <div class="card-header"><span class="cat-badge">🔒 NPM</span><span class="score">⭐ 261 💬</span></div>
+      <h3><a href="https://github.com/axios" target="_blank">Post Mortem: axios NPM supply chain compromise</a></h3>
+      <p class="impact">Compromisso na cadeia de suprimentos NPM — axios vulnerável. Lições sobre segurança de dependências.</p>
+      <div class="footer"><span>📌 GitHub / HN Front</span><a href="https://github.com/axios" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card security-card">
+      <div class="card-header"><span class="cat-badge">🔒 Saúde</span><span class="score">💬 156</span></div>
+      <h3><a href="https://freevacy.com" target="_blank">NHS staff refusing to use FDP over Palantir ethical concerns</a></h3>
+      <p class="impact">Staff NHS recusa usar plataforma de dados Palantir por preocupações éticas — debate sobre privacidade em saúde.</p>
+      <div class="footer"><span>📌 freevacy / HN Front</span><a href="https://freevacy.com" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+  <!-- 💻 DEV / TECH -->
+  <div class="section-title">💻 Developer & Tech</div>
+  <div class="grid">
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">💡 Azure</span><span class="score">⭐ 1,200 💬</span></div>
+      <h3><a href="https://isolveproblems.substack.com" target="_blank">Decisions that eroded trust in Azure — by a former Azure Core engineer</a></h3>
+      <p class="impact">Ex-engenheiro Azure Core expõe decisões que erodiram confiança na plataforma — 604 comentários.</p>
+      <div class="footer"><span>📌 Substack / HN #2</span><a href="https://isolveproblems.substack.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">🤖 AI Local</span><span class="score">⭐ 680 💬</span></div>
+      <h3><a href="https://franzai.com" target="_blank">Show HN: Apfel – The free AI already on your Mac</a></h3>
+      <p class="impact">AI gratuita e local no Mac — alternativa open-source a serviços cloud.</p>
+      <div class="footer"><span>📌 Show HN</span><a href="https://franzai.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">💡 Infra</span><span class="score">⭐ 313 💬</span></div>
+      <h3><a href="https://mintlify.com" target="_blank">We replaced RAG with a virtual filesystem for our AI documentation assistant</a></h3>
+      <p class="impact">Alternativa ao RAG usando sistema de ficheiros virtual para assistente de documentação AI.</p>
+      <div class="footer"><span>📌 Mintlify / HN</span><a href="https://mintlify.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">🍊 Ollama</span><span class="score">⭐ 305 💬</span></div>
+      <h3><a href="https://gist.github.com" target="_blank">April 2026 TLDR Setup for Ollama and Gemma 4 26B on a Mac mini</a></h3>
+      <p class="impact">Setup atualizado para correr Gemma 4 26B localmente no Mac mini via Ollama.</p>
+      <div class="footer"><span>📌 GitHub Gist / HN</span><a href="https://gist.github.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card hn-card">
+      <div class="card-header"><span class="cat-badge">💼 Oracle</span><span class="score">487 🔥</span></div>
+      <h3><a href="https://nationaltoday.com" target="_blank">Oracle files H-1B visa petitions amid mass layoffs</a></h3>
+      <p class="impact">Oracle pede vistos H-1B enquanto faz layoffs massivos — contradição que gera debate na comunidade tech.</p>
+      <div class="footer"><span>📌 National Today / HN</span><a href="https://nationaltoday.com" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+  <!-- ⚡ AI INFRASTRUCTURE -->
+  <div class="section-title">⚡ AI Infrastructure & Energy</div>
+  <div class="grid">
+    <div class="card infra-card">
+      <div class="card-header"><span class="cat-badge">⚡ Energia</span><span class="score">30%</span></div>
+      <h3><a href="https://axios.com" target="_blank">Data Centers Split Over Grid vs. Private "Energy Islands"</a></h3>
+      <p class="impact">~30% da capacidade planeada pode ser on-site (up de ~0%). Chevron a trabalhar com Microsoft TX deal. Acesso a energia é agora tão estratégico como chips.</p>
+      <div class="footer"><span>📌 Axios</span><a href="https://axios.com" target="_blank">🔗 URL</a></div>
+    </div>
+    <div class="card infra-card">
+      <div class="card-header"><span class="cat-badge">⚡ Supply Chain</span><span class="score">🇨🇳</span></div>
+      <h3><a href="https://www.bloomberg.com" target="_blank">US AI Data Centers Heavily Dependent on Chinese Electrical Imports</a></h3>
+      <p class="impact">Dependência de transformadores/componentes chineses para data centers US — vulnerabilidade geopolítica escondida.</p>
+      <div class="footer"><span>📌 Bloomberg</span><a href="https://www.bloomberg.com" target="_blank">🔗 URL</a></div>
+    </div>
+  </div>
+
+
+  <div class="last-updated">
+    🔄 Dashboard gerado automaticamente · 2026-04-04 10:39 UTC<br>
+    Fontes: HN Front (30 stories), Reuters, Tech Startups, Fortune, MIT News, The Guardian, AP
+  </div>
+</body>
+</html>
