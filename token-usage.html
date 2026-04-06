@@ -21,13 +21,13 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-06 20:46 UTC</div>
+<div class="ts">Updated: 2026-04-06 20:49 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">2,982</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">179,743,521</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">2,994</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">180,717,950</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
-<div class="stat"><div class="val">96.2%</div><div class="lbl">Cache Hit Rate</div></div>
+<div class="stat"><div class="val">97.3%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
 
 <div class="charts">
@@ -56,7 +56,7 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["custom", "openrouter"],
-    datasets: [{ data: [92772772, 86970749], backgroundColor: COLORS }]
+    datasets: [{ data: [93747201, 86970749], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
@@ -64,7 +64,7 @@ new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
     labels: ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free", "minimax/minimax-m2.5:free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
-    datasets: [{ label: 'Tokens', data: [92512956, 83449291, 3450632, 259816, 58426, 12400], backgroundColor: '#3498db' }]
+    datasets: [{ label: 'Tokens', data: [93487385, 83449291, 3450632, 259816, 58426, 12400], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
