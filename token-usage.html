@@ -21,13 +21,13 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-06 14:24 UTC</div>
+<div class="ts">Updated: 2026-04-06 15:00 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">1,372</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">79,932,094</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">1,579</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">93,015,734</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
-<div class="stat"><div class="val">32.5%</div><div class="lbl">Cache Hit Rate</div></div>
+<div class="stat"><div class="val">29.2%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
 
 <div class="charts">
@@ -37,16 +37,16 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 
 <h2 style="color:#888">📋 Top Sources</h2>
 <table><tr><th>Source</th><th>Requests</th><th>Tokens</th></tr>
+<tr><td style="color:#ccc">cron:49756f23e396</td><td style="color:#2ecc71">120</td><td style="color:#3498db">8,556,776</td></tr>
 <tr><td style="color:#ccc">cron:736c86856dde</td><td style="color:#2ecc71">121</td><td style="color:#3498db">6,951,688</td></tr>
 <tr><td style="color:#ccc">cron:e9a656bc36ef</td><td style="color:#2ecc71">103</td><td style="color:#3498db">6,516,315</td></tr>
 <tr><td style="color:#ccc">cron:ae4ec306350f</td><td style="color:#2ecc71">119</td><td style="color:#3498db">6,348,889</td></tr>
-<tr><td style="color:#ccc">cron:92cd976b5b19</td><td style="color:#2ecc71">63</td><td style="color:#3498db">6,082,107</td></tr>
+<tr><td style="color:#ccc">cron:92cd976b5b19</td><td style="color:#2ecc71">64</td><td style="color:#3498db">6,152,285</td></tr>
 <tr><td style="color:#ccc">cron:dce8bc4ea7db</td><td style="color:#2ecc71">91</td><td style="color:#3498db">5,859,599</td></tr>
 <tr><td style="color:#ccc">cron:3c2847c9ecb4</td><td style="color:#2ecc71">117</td><td style="color:#3498db">5,540,863</td></tr>
-<tr><td style="color:#ccc">cron:33f64559a099</td><td style="color:#2ecc71">75</td><td style="color:#3498db">4,797,825</td></tr>
-<tr><td style="color:#ccc">cron:689bcd806abb</td><td style="color:#2ecc71">68</td><td style="color:#3498db">3,803,228</td></tr>
-<tr><td style="color:#ccc">cron:e46cafeb1d85</td><td style="color:#2ecc71">33</td><td style="color:#3498db">2,077,113</td></tr>
-<tr><td style="color:#ccc">cron:6f5af0c6d47f</td><td style="color:#2ecc71">21</td><td style="color:#3498db">2,062,931</td></tr>
+<tr><td style="color:#ccc">cron:689bcd806abb</td><td style="color:#2ecc71">108</td><td style="color:#3498db">5,475,256</td></tr>
+<tr><td style="color:#ccc">cron:33f64559a099</td><td style="color:#2ecc71">77</td><td style="color:#3498db">4,841,250</td></tr>
+<tr><td style="color:#ccc">cron:6f5af0c6d47f</td><td style="color:#2ecc71">46</td><td style="color:#3498db">3,976,831</td></tr>
 
 </table>
 
@@ -56,15 +56,15 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["openrouter", "custom"],
-    datasets: [{ data: [58378139, 21553955], backgroundColor: COLORS }]
+    datasets: [{ data: [71461779, 21553955], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
 new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
-    labels: ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5", "llama3.2:latest", "minimax/minimax-m2.5:free", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
-    datasets: [{ label: 'Tokens', data: [58212761, 21294139, 259816, 94552, 58426, 12400], backgroundColor: '#3498db' }]
+    labels: ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5", "minimax/minimax-m2.5:free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
+    datasets: [{ label: 'Tokens', data: [69690275, 21294139, 1700678, 259816, 58426, 12400], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
