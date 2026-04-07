@@ -21,13 +21,13 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-07 19:37 UTC</div>
+<div class="ts">Updated: 2026-04-07 19:49 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">6,319</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">359,372,542</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">6,373</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">361,025,605</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
-<div class="stat"><div class="val">56.1%</div><div class="lbl">Cache Hit Rate</div></div>
+<div class="stat"><div class="val">56.0%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
 
 <div class="charts">
@@ -39,12 +39,12 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 <table><tr><th>Source</th><th>Requests</th><th>Tokens</th></tr>
 <tr><td style="color:#ccc">cron:cd7dce4f7a23</td><td style="color:#2ecc71">577</td><td style="color:#3498db">39,177,694</td></tr>
 <tr><td style="color:#ccc">cron:92cd976b5b19</td><td style="color:#2ecc71">539</td><td style="color:#3498db">37,009,652</td></tr>
-<tr><td style="color:#ccc">gateway:discord</td><td style="color:#2ecc71">406</td><td style="color:#3498db">29,338,977</td></tr>
-<tr><td style="color:#ccc">cron:yt_transcript_maximizer</td><td style="color:#2ecc71">548</td><td style="color:#3498db">28,256,433</td></tr>
+<tr><td style="color:#ccc">gateway:discord</td><td style="color:#2ecc71">417</td><td style="color:#3498db">29,805,736</td></tr>
+<tr><td style="color:#ccc">cron:yt_transcript_maximizer</td><td style="color:#2ecc71">556</td><td style="color:#3498db">28,434,793</td></tr>
 <tr><td style="color:#ccc">cron:736c86856dde</td><td style="color:#2ecc71">463</td><td style="color:#3498db">27,129,075</td></tr>
 <tr><td style="color:#ccc">cron:57fe331360fb</td><td style="color:#2ecc71">449</td><td style="color:#3498db">21,888,080</td></tr>
 <tr><td style="color:#ccc">cron:2a4d7c310e5a</td><td style="color:#2ecc71">241</td><td style="color:#3498db">18,621,297</td></tr>
-<tr><td style="color:#ccc">cron:528b2cf44fd6</td><td style="color:#2ecc71">328</td><td style="color:#3498db">12,888,566</td></tr>
+<tr><td style="color:#ccc">cron:528b2cf44fd6</td><td style="color:#2ecc71">330</td><td style="color:#3498db">12,944,392</td></tr>
 <tr><td style="color:#ccc">cron:49756f23e396</td><td style="color:#2ecc71">120</td><td style="color:#3498db">8,556,776</td></tr>
 <tr><td style="color:#ccc">cron:7c84992164b8</td><td style="color:#2ecc71">140</td><td style="color:#3498db">7,360,400</td></tr>
 
@@ -56,7 +56,7 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["openrouter", "custom"],
-    datasets: [{ data: [219750940, 139621602], backgroundColor: COLORS }]
+    datasets: [{ data: [220292125, 140733480], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
@@ -64,7 +64,7 @@ new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
     labels: ["qwen/qwen3.6-plus:free", "hf:MiniMaxAI/MiniMax-M2.5", "minimax/minimax-m2.5:free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
-    datasets: [{ label: 'Tokens', data: [216229482, 138639271, 3450632, 982331, 58426, 12400], backgroundColor: '#3498db' }]
+    datasets: [{ label: 'Tokens', data: [216770667, 139751149, 3450632, 982331, 58426, 12400], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
