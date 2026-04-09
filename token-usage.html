@@ -21,11 +21,11 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-09 21:10 UTC</div>
+<div class="ts">Updated: 2026-04-09 21:12 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">34,307</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">1,643,690,496</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">34,315</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">1,643,996,846</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
 <div class="stat"><div class="val">71.6%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
@@ -39,7 +39,7 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 <table><tr><th>Source</th><th>Requests</th><th>Tokens</th></tr>
 <tr><td style="color:#ccc">gateway:discord</td><td style="color:#2ecc71">6210</td><td style="color:#3498db">403,357,597</td></tr>
 <tr><td style="color:#ccc">cron:yt_transcript_maximizer</td><td style="color:#2ecc71">3264</td><td style="color:#3498db">156,564,900</td></tr>
-<tr><td style="color:#ccc">cron:528b2cf44fd6</td><td style="color:#2ecc71">2093</td><td style="color:#3498db">93,699,546</td></tr>
+<tr><td style="color:#ccc">cron:528b2cf44fd6</td><td style="color:#2ecc71">2101</td><td style="color:#3498db">94,005,896</td></tr>
 <tr><td style="color:#ccc">cron:2a4d7c310e5a</td><td style="color:#2ecc71">1416</td><td style="color:#3498db">63,583,105</td></tr>
 <tr><td style="color:#ccc">cron:133559891500</td><td style="color:#2ecc71">1261</td><td style="color:#3498db">48,468,383</td></tr>
 <tr><td style="color:#ccc">cron:736c86856dde</td><td style="color:#2ecc71">904</td><td style="color:#3498db">47,525,836</td></tr>
@@ -56,7 +56,7 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["custom", "openrouter"],
-    datasets: [{ data: [1311192636, 332497860], backgroundColor: COLORS }]
+    datasets: [{ data: [1311192636, 332804210], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
@@ -64,7 +64,7 @@ new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
     labels: ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free", "hf:zai-org/GLM-5", "z-ai/glm-4.5-air:free", "nvidia/nemotron-3-super-120b-a", "minimax/minimax-m2.5:free", "openrouter/free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
-    datasets: [{ label: 'Tokens', data: [1250426871, 246064280, 59783434, 57857484, 21930154, 3450632, 3124484, 982331, 58426, 12400], backgroundColor: '#3498db' }]
+    datasets: [{ label: 'Tokens', data: [1250426871, 246064280, 59783434, 58163834, 21930154, 3450632, 3124484, 982331, 58426, 12400], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
