@@ -21,13 +21,13 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-09 13:41 UTC</div>
+<div class="ts">Updated: 2026-04-09 13:54 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">28,092</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">1,310,203,302</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">28,328</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">1,325,241,990</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
-<div class="stat"><div class="val">71.9%</div><div class="lbl">Cache Hit Rate</div></div>
+<div class="stat"><div class="val">72.0%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
 
 <div class="charts">
@@ -37,8 +37,8 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 
 <h2 style="color:#888">📋 Top Sources</h2>
 <table><tr><th>Source</th><th>Requests</th><th>Tokens</th></tr>
-<tr><td style="color:#ccc">gateway:discord</td><td style="color:#2ecc71">4897</td><td style="color:#3498db">312,035,324</td></tr>
-<tr><td style="color:#ccc">cron:yt_transcript_maximizer</td><td style="color:#2ecc71">2970</td><td style="color:#3498db">140,245,912</td></tr>
+<tr><td style="color:#ccc">gateway:discord</td><td style="color:#2ecc71">4996</td><td style="color:#3498db">319,017,585</td></tr>
+<tr><td style="color:#ccc">cron:yt_transcript_maximizer</td><td style="color:#2ecc71">3005</td><td style="color:#3498db">142,036,891</td></tr>
 <tr><td style="color:#ccc">cron:2a4d7c310e5a</td><td style="color:#2ecc71">1316</td><td style="color:#3498db">60,080,045</td></tr>
 <tr><td style="color:#ccc">cron:528b2cf44fd6</td><td style="color:#2ecc71">1318</td><td style="color:#3498db">59,194,397</td></tr>
 <tr><td style="color:#ccc">cron:736c86856dde</td><td style="color:#2ecc71">779</td><td style="color:#3498db">40,312,445</td></tr>
@@ -56,7 +56,7 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["custom", "openrouter"],
-    datasets: [{ data: [1058891158, 251312144], backgroundColor: COLORS }]
+    datasets: [{ data: [1073929846, 251312144], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
@@ -64,7 +64,7 @@ new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
     labels: ["hf:MiniMaxAI/MiniMax-M2.5", "qwen/qwen3.6-plus:free", "minimax/minimax-m2.5:free", "openrouter/free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
-    datasets: [{ label: 'Tokens', data: [1057908827, 246064280, 3450632, 1726406, 982331, 58426, 12400], backgroundColor: '#3498db' }]
+    datasets: [{ label: 'Tokens', data: [1072947515, 246064280, 3450632, 1726406, 982331, 58426, 12400], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
