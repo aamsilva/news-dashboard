@@ -21,11 +21,11 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-12 12:49 UTC</div>
+<div class="ts">Updated: 2026-04-12 13:03 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">41,608</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">1,952,075,133</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">41,704</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">1,954,936,815</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
 <div class="stat"><div class="val">70.4%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
@@ -39,10 +39,10 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 <table><tr><th>Source</th><th>Requests</th><th>Tokens</th></tr>
 <tr><td style="color:#ccc">gateway:discord</td><td style="color:#2ecc71">6365</td><td style="color:#3498db">414,788,480</td></tr>
 <tr><td style="color:#ccc">cron:yt_transcript_maximizer</td><td style="color:#2ecc71">3336</td><td style="color:#3498db">159,026,145</td></tr>
-<tr><td style="color:#ccc">cron:54d5cdceaaff</td><td style="color:#2ecc71">2643</td><td style="color:#3498db">109,205,455</td></tr>
-<tr><td style="color:#ccc">cron:2a4d7c310e5a</td><td style="color:#2ecc71">2434</td><td style="color:#3498db">101,389,921</td></tr>
+<tr><td style="color:#ccc">cron:54d5cdceaaff</td><td style="color:#2ecc71">2683</td><td style="color:#3498db">110,479,023</td></tr>
+<tr><td style="color:#ccc">cron:2a4d7c310e5a</td><td style="color:#2ecc71">2456</td><td style="color:#3498db">102,019,381</td></tr>
 <tr><td style="color:#ccc">cron:528b2cf44fd6</td><td style="color:#2ecc71">2105</td><td style="color:#3498db">94,159,874</td></tr>
-<tr><td style="color:#ccc">cron:44f512059a48</td><td style="color:#2ecc71">1991</td><td style="color:#3498db">72,211,788</td></tr>
+<tr><td style="color:#ccc">cron:44f512059a48</td><td style="color:#2ecc71">2019</td><td style="color:#3498db">72,996,926</td></tr>
 <tr><td style="color:#ccc">cron:6b455b33933f</td><td style="color:#2ecc71">1479</td><td style="color:#3498db">68,152,702</td></tr>
 <tr><td style="color:#ccc">cron:133559891500</td><td style="color:#2ecc71">1328</td><td style="color:#3498db">53,566,516</td></tr>
 <tr><td style="color:#ccc">cron:736c86856dde</td><td style="color:#2ecc71">1044</td><td style="color:#3498db">53,188,962</td></tr>
@@ -56,7 +56,7 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["custom", "openrouter"],
-    datasets: [{ data: [1430773340, 521301793], backgroundColor: COLORS }]
+    datasets: [{ data: [1433635022, 521301793], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
@@ -64,7 +64,7 @@ new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
     labels: ["hf:MiniMaxAI/MiniMax-M2.5", "z-ai/glm-4.5-air:free", "qwen/qwen3.6-plus:free", "hf:zai-org/GLM-5", "nvidia/nemotron-3-super-120b-a", "minimax/minimax-m2.5:free", "openrouter/free", "llama3.2:latest", "nvidia/nemotron-nano-9b-v2:fre", "anthropic/claude-sonnet-4-2025"],
-    datasets: [{ label: 'Tokens', data: [1370007575, 246661417, 246064280, 59783434, 21930154, 3450632, 3124484, 982331, 58426, 12400], backgroundColor: '#3498db' }]
+    datasets: [{ label: 'Tokens', data: [1372869257, 246661417, 246064280, 59783434, 21930154, 3450632, 3124484, 982331, 58426, 12400], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
