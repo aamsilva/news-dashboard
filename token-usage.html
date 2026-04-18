@@ -21,11 +21,11 @@ td, th { padding: 6px 12px; text-align: left; border-bottom: 1px solid #222; fon
 </head>
 <body>
 <h1>📈 Token Usage Dashboard</h1>
-<div class="ts">Updated: 2026-04-18 08:02 UTC</div>
+<div class="ts">Updated: 2026-04-18 08:17 UTC</div>
 
 <div class="stats">
-<div class="stat"><div class="val">57,575</div><div class="lbl">Requests</div></div>
-<div class="stat"><div class="val">2,538,618,570</div><div class="lbl">Total Tokens</div></div>
+<div class="stat"><div class="val">57,601</div><div class="lbl">Requests</div></div>
+<div class="stat"><div class="val">2,539,661,414</div><div class="lbl">Total Tokens</div></div>
 <div class="stat"><div class="val">$0.0000</div><div class="lbl">Total Cost</div></div>
 <div class="stat"><div class="val">73.1%</div><div class="lbl">Cache Hit Rate</div></div>
 </div>
@@ -56,7 +56,7 @@ new Chart(document.getElementById('provChart'), {
   type: 'doughnut',
   data: {
     labels: ["custom", "openrouter"],
-    datasets: [{ data: [2016141021, 522477549], backgroundColor: COLORS }]
+    datasets: [{ data: [2017183865, 522477549], backgroundColor: COLORS }]
   },
   options: { plugins: { legend: { position: 'bottom', labels: { color: '#888' } } } }
 });
@@ -64,7 +64,7 @@ new Chart(document.getElementById('modelChart'), {
   type: 'bar',
   data: {
     labels: ["hf:MiniMaxAI/MiniMax-M2.5", "z-ai/glm-4.5-air:free", "qwen/qwen3.6-plus:free", "hf:zai-org/GLM-5", "hf:zai-org/GLM-5.1", "nvidia/nemotron-3-super-120b-a", "minimax/minimax-m2.5:free", "openrouter/free", "qwen/qwen3-next-80b-a3b-instru", "llama3.2:latest"],
-    datasets: [{ label: 'Tokens', data: [1899124726, 246661417, 246064280, 59783434, 56250530, 21930154, 3450632, 3124484, 1175756, 982331], backgroundColor: '#3498db' }]
+    datasets: [{ label: 'Tokens', data: [1899124726, 246661417, 246064280, 59783434, 57293374, 21930154, 3450632, 3124484, 1175756, 982331], backgroundColor: '#3498db' }]
   },
   options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { ticks: { color: '#555' }, grid: { color: '#1a1a2e' } }, y: { ticks: { color: '#888', font: { size: 10 } } } } }
 });
