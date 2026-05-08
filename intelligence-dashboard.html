@@ -1,160 +1,965 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YouTube Transcript Maximizer - Dashboard</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0f172a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 20px; }
-  .header { text-align: center; padding: 20px; border-bottom: 2px solid #334155; margin-bottom: 20px; }
-  .header h1 { font-size: 1.8rem; color: #38bdf8; }
-  .header p { color: #94a3b8; margin-top: 5px; }
-  .score-card { display: flex; justify-content: center; align-items: center; gap: 30px; padding: 20px; margin: 20px 0; background: #1e293b; border-radius: 12px; }
-  .score-ring { position: relative; width: 160px; height: 160px; }
-  .score-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; font-weight: bold; }
-  .status { font-size: 1.2rem; padding: 8px 16px; border-radius: 6px; font-weight: 600; }
-  .status-good { background: #059669; color: white; }
-  .status-warn { background: #d97706; color: white; }
-  .status-crit { background: #dc2626; color: white; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-  .card { background: #1e293b; border-radius: 12px; padding: 20px; border: 1px solid #334155; }
-  .card h2 { color: #38bdf8; margin-bottom: 15px; font-size: 1.1rem; }
-  .metric { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #33415540; }
-  .metric:last-child { border-bottom: none; }
-  .metric .label { color: #94a3b8; }
-  .metric .value { font-weight: 600; color: #e2e8f0; }
-  .chart-container { position: relative; height: 200px; }
-  .footer { text-align: center; padding: 20px; color: #64748b; font-size: 0.9rem; margin-top: 20px; }
-  .refresh-info { background: #1e293b; border-radius: 8px; padding: 10px 20px; display: inline-block; margin-top: 10px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Intelligence Dashboard - 2026-05-08</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e17; color: #e2e8f0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; padding: 20px; background: #1a2236; border-radius: 10px; }
+        .header h1 { color: #6366f1; font-size: 2em; margin-bottom: 10px; }
+        .header p { color: #94a3b8; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: #1a2236; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid #2d3748; }
+        .stat-card .number { font-size: 2em; font-weight: bold; color: #6366f1; }
+        .stat-card .label { color: #94a3b8; margin-top: 5px; }
+        .topic-section { margin-bottom: 30px; }
+        .topic-title { font-size: 1.5em; margin-bottom: 15px; padding: 10px; background: #1a2236; border-radius: 8px; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 15px; }
+        .video-card { background: #1a2236; border-radius: 10px; padding: 15px; border: 1px solid #2d3748; transition: transform 0.2s; }
+        .video-card:hover { transform: translateY(-3px); border-color: #6366f1; }
+        .video-title { font-weight: bold; margin-bottom: 8px; color: #e2e8f0; line-height: 1.4; }
+        .video-meta { font-size: 0.9em; color: #94a3b8; margin-bottom: 5px; }
+        .video-score { display: inline-block; background: #6366f1; color: white; padding: 3px 8px; border-radius: 5px; font-weight: bold; }
+        .video-topics { margin-top: 8px; }
+        .topic-tag { display: inline-block; background: #2d3748; color: #94a3b8; padding: 2px 8px; border-radius: 3px; font-size: 0.8em; margin-right: 5px; }
+        .channel-name { color: #10b981; font-weight: bold; }
+        .warning { background: #451a03; border: 1px solid #f59e0b; padding: 15px; border-radius: 10px; margin-bottom: 20px; color: #fbbf24; }
+    </style>
 </head>
 <body>
-  <div class="header">
-    <h1>🎯 YouTube Transcript Maximizer</h1>
-    <p>Dashboard Cockpit v4.0 - Sistema de Extração Automática</p>
-    <div class="score-card">
-      <div class="score-ring">
-        <canvas id="scoreChart"></canvas>
-        <div class="score-value" style="color: #34d399">74%</div>
-      </div>
-      <span class="status status-good">🟢 OPERATIONAL</span>
+    <div class="header">
+        <h1>🎯 YouTube Intelligence Dashboard</h1>
+        <p>Generated: May 08, 2026 at 06:29 PM | Total Videos: 2,123 | High-Signal: 1,876</p>
     </div>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <h2>🤖 AUTONOMY</h2>
-      <div class="metric"><span class="label">Cron Jobs Active</span><span class="value">2</span></div>
-      <div class="metric"><span class="label">Human Interventions</span><span class="value">0</span></div>
-      <div class="metric"><span class="label">Self-Healing Events</span><span class="value">0</span></div>
-      <div class="metric"><span class="label">Fully Autonomous</span><span class="value">✅ Sim</span></div>
+    
+    <div class="warning">
+        ⚠️ <strong>Pipeline Stalled:</strong> No new extractions since May 5th, 2026 (3 days ago). Last extraction: 2026-05-05 21:53. 
+        Recent high-signal (48h): 0 videos.
     </div>
-
-    <div class="card">
-      <h2>🛡️ RESILIENCE</h2>
-      <div class="metric"><span class="label">Uptime</span><span class="value">96.5%</span></div>
-      <div class="metric"><span class="label">Error Rate</span><span class="value">3.52%</span></div>
-      <div class="metric"><span class="label">Failures Detected</span><span class="value">17</span></div>
-      <div class="metric"><span class="label">Recovered</span><span class="value">0</span></div>
-      <div class="metric"><span class="label">Fallback Activations</span><span class="value">0</span></div>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="number">2,123</div>
+            <div class="label">Total Videos Processed</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">1,876</div>
+            <div class="label">High-Signal Videos (≥7)</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">0</div>
+            <div class="label">Recent (48h)</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">9104</div>
+            <div class="label">Total Topic Matches</div>
+        </div>
     </div>
-
-    <div class="card">
-      <h2>🔄 SELF-ADAPTATION</h2>
-      <div class="metric"><span class="label">Channels Optimized</span><span class="value">29/29</span></div>
-      <div class="metric"><span class="label">Auto-Optimization</span><span class="value">✅ Enabled</span></div>
-      <div class="metric"><span class="label">Refresh Rate</span><span class="value">24h</span></div>
+    
+    <div class="topic-section">
+        <div class="topic-title">📊 Topic Distribution (High-Signal Videos)</div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="number">🌍 1752</div>
+                <div class="label">Geopolitics</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">💻 1725</div>
+                <div class="label">Tech</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">🤖 1395</div>
+                <div class="label">AI/ML</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">💼 1255</div>
+                <div class="label">Business</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">🚀 1197</div>
+                <div class="label">Space</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">📈 1072</div>
+                <div class="label">Finance</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">💊 708</div>
+                <div class="label">Health</div>
+            </div>
+        </div>
     </div>
-
-    <div class="card">
-      <h2>📈 PERFORMANCE</h2>
-      <div class="metric"><span class="label">Today</span><span class="value">0 transcripts</span></div>
-      <div class="metric"><span class="label">Total</span><span class="value">163 transcripts</span></div>
-      <div class="metric"><span class="label">Throughput/hr</span><span class="value">0.0</span></div>
-      <div class="metric"><span class="label">Efficiency</span><span class="value">0.0%</span></div>
-      <div class="metric"><span class="label">Avg Words/Video</span><span class="value">0</span></div>
-      <div class="metric"><span class="label">Videos/Run</span><span class="value">1,620</span></div>
+    
+    <div class="topic-section">
+        <div class="topic-title">🏆 TOP 50 HIGH-SIGNAL VIDEOS</div>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-title">#1 Elon Musk vs. Sam Altman, AI Job Loss, and OpenAI’s $852B Valuation | EP #247</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 68,106 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 162</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=5ak26W2YNRY" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#2 SpaceX Goes Public, Claude’s Mythos Release, and the US Data Center Delay | EP #</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 79,710 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 153</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=cFI-SqnvQK8" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#3 Google Invests $40B Into Anthropic, GPT 5.5 Drops, and Google Cloud Dominates | </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 74,571 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 152</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=RCbJKkG_mZs" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#4 Elon's $60B Cursor Bet, Claude kills SaaS, and OpenAI's Mass Departures | EP #24</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 84,158 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 152</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=Bj0i-yvIUQs" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#5 Amazon's $35B AGI Ultimatum to OpenAI & Anthropic Drops AI Safety | EP #235</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 73,385 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 143</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=T8X6kp-pcKs" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#6 NVIDIA's $1 Trillion Prediction, Anthropic Beats OpenAI, Tesla vs. TSMC & The CS</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 73,153 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 142</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=uOGHXAfvK8w" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#7 Anthropic vs. The Pentagon, Claude Outpaces ChatGPT, and Consulting Gets Replace</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 68,902 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 140</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=dmtvGKuRE64" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#8 Elon Enters the Chip Race, the S&P 500 Repricing, and Human Drivers Will Become </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 67,802 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 139</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=wMLcIWLlcWg" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#9 Sam Altman’s Attack, Amazon vs. Starlink, and What Opus 4.7 Actually Means | #24</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 72,444 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 139</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=LVvleNtllPk" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#10 State of AI in 2026: LLMs, Coding, Scaling Laws, China, Agents, GPUs, AGI | Lex </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Lex Fridman</span><br>
+                    📝 52,276 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 127</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=EV7WhVT270Q" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#11 Coinbase CEO's Top 3 Crypto Trends for 2026 + More from Davos!</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 20,153 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 125</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=-yrLEKjMyrM" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#12 Anthropic vs. The Pentagon, Claude Outpaces ChatGPT, and Consulting Gets Replace</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 22,982 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 120</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=dmtvGKuRE64" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#13 Amazon's $35B AGI Ultimatum to OpenAI & Anthropic Drops AI Safety | EP #235</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 24,481 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 119</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=T8X6kp-pcKs" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#14 China's Rise, GPT-5.2, Anthropic IPO & the Battle for AI Trust w/ Emad, Salim, D</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 21,852 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 119</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=zGD5mv-XKU0" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#15 Cathie Wood: “AI and Bitcoin Are Moving Faster Than We Expected” | EP #226</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 19,044 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 116</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=VoW13oUTTV0" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#16 NVIDIA's $1 Trillion Prediction, Anthropic Beats OpenAI, Tesla vs. TSMC & The CS</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 24,420 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 116</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=uOGHXAfvK8w" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-07
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#17 Four CEOs on the Future of AI: CoreWeave, Perplexity, Mistral, and IREN</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 18,481 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 115</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=-JBhTBu9ZbA" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-07
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#18 Claude Code Ends SaaS, the Gemini + Siri Partnership, and Math Finally Solves AI</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 19,461 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 113</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=DTgrzlQtOd0" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#19 Elon Enters the Chip Race, the S&P 500 Repricing, and Human Drivers Will Become </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 22,885 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 113</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=wMLcIWLlcWg" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-07
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#20 GPT 5.2 Release, Corporate Collapse in 2026, and 1.1M Job Loss | EP #215</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 21,919 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 112</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=z6U-jqHzBqY" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#21 The Future of Everything: What CEOs of Circle, CrowdStrike & More See Coming in </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 28,045 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 111</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Business</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=w2BqPnVKVo4" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#22 The Frontier Labs War: Opus 4.6, GPT 5.3 Codex, and the SuperBowl Ads Debacle | </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 21,918 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 108</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=L2rkXjd1WgM" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#23 Ben Horowitz: xAI Executive Exodus, Apple's AI Crisis, The Pace of AI | EP #232</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 19,536 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 105</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=C1GLT9_tag0" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#24 AI CEOs Come Online: Sam Altman's Replacement Plan, Job Loss & 'Solve Everything</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 23,363 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 102</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=6P0uTDGDr-I" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#25 Dylan Patel: AI in War, Jobs are Cooked, Chinese Hacking, Microsoft Cope, and Su</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Matthew Berman</span><br>
+                    📝 19,309 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 102</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=E5B0cS6XRkg" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#26 DHH: Future of Programming, AI, Ruby on Rails, Productivity & Parenting | Lex Fr</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Lex Fridman</span><br>
+                    📝 66,222 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 102</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=vagyIcmIGOQ" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#27 SpaceX IPO, Iran War Fallout, Quantum Bitcoin Hack, The Space Opportunity</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 15,033 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 102</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=N-pust8qtGI" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-07
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#28 War with Iran + Pentagon vs Anthropic with Under Secretary of War Emil Michael</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 15,557 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 101</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=gzwRflcLPAA" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#29 Epstein Files, Is SaaS Dead?, Moltbook Panic, SpaceX xAI Merger, Trump's Fed Pic</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 15,340 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 99</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=wTiHheA40nI" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#30 The 2026 Timeline: AGI Arrival, Safety Concerns, Robotaxi Fleets & Hyperscaler T</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 22,150 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 99</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=2WTFuSeYJ6o" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#31 What’s the Story? AI Stocks, Crypto Downturn, Metals Selloff, SaaSpocalypse | Ji</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Bankless</span><br>
+                    📝 14,247 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 97</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=25kc95NH7N4" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#32 Is RL + LLMs enough for AGI? — Sholto Douglas & Trenton Bricken</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Dwarkesh Patel</span><br>
+                    📝 28,960 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 97</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=64lXQP6cs5M" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#33 Elon Musk on AGI Timeline, US vs China, Job Markets, Clean Energy & Humanoid Rob</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 31,049 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 96</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=RSNuB9pj9P8" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#34 The Market Reaction to War Was Not What Anyone Expected</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Bankless</span><br>
+                    📝 11,418 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 95</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=DFISbcoppos" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#35 OpenClaw Debate: AI Personhood, Proof of AGI, and the ‘Rights’ Framework | EP #2</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 24,392 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 94</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Business</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=JlB852LGRJk" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#36 Mustafa Suleyman: The AGI Race Is Fake, Building Safe Superintelligence & the Ag</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 15,580 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 94</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=XWGnWcmns_M" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#37 Scott Horton: The Case Against War and the Military Industrial Complex | Lex Fri</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Lex Fridman</span><br>
+                    📝 115,056 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 93</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=jdCKiEJpwf4" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#38 Iran War, Oil Shock, Off Ramps, AI's Revenue Explosion and PR Nightmare</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 15,131 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 93</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=HiVej9_fvl8" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#39 Elon Musk – "In 36 months, the cheapest place to put AI will be space”</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Dwarkesh Patel</span><br>
+                    📝 30,402 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 92</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=BYXbuik3dgA" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#40 Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 15,176 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 92</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=4Gmd5UTF4rk" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-07
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#41 Satya Nadella – How Microsoft thinks about AGI</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Dwarkesh Patel</span><br>
+                    📝 17,432 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 90</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Business</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=8-boBsWcr5A" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#42 Dylan Patel — The single biggest bottleneck to scaling AI compute</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Dwarkesh Patel</span><br>
+                    📝 31,759 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 90</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Business</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=mDG_Hx3BSUE" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-07
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#43 OpenClaw Explained: Baby AGI, Security Threats, Mac Mini Became Everyone's Super</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter H. Diamandis</span><br>
+                    📝 50,339 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 89</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Business</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=qP73cGLQmCU" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-05-05
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#44 2026 Predictions: AI Automates Knowledge Work, Autonomous Robots & AI CEO Billio</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 12,988 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 89</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=NHAzpG95ptI" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#45 Davos 2026: The US-China AI Race, GPU Diplomacy, and Robots Walking the Streets </div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Peter Diamandis</span><br>
+                    📝 18,435 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 88</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=hGRiklWYMas" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#46 Two Legendary Founders: Travis Kalanick & Michael Dell Live from Austin, Texas</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 All-In Podcast</span><br>
+                    📝 13,624 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 87</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=9y7TTU1jIvk" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#47 Marc Andreessen's 2026 Outlook: AI Timelines, US vs. China, and The Price of AI</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Andreessen Horowitz</span><br>
+                    📝 20,351 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 87</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=xRh2sVcNXQ8" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#48 this EX-OPENAI RESEARCHER just released it...</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Wes Roth</span><br>
+                    📝 21,189 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 86</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=wX_EVS3UOwU" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#49 95: Follow the Incentives</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Jupiter Broadcasting</span><br>
+                    📝 16,546 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 86</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=jb0qhWhGc2I" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+            <div class="video-card">
+                <div class="video-title">#50 Pavel Durov: Telegram, Freedom, Censorship, Money, Power & Human Nature | Lex Fr</div>
+                <div class="video-meta">
+                    <span class="channel-name">📺 Lex Fridman</span><br>
+                    📝 35,245 words | 👁️ 0 views
+                </div>
+                <div>
+                    <span class="video-score">Score: 86</span>
+                </div>
+                <div class="video-topics">
+                    <span class="topic-tag">AI/ML</span> <span class="topic-tag">Tech</span> <span class="topic-tag">Space</span> <span class="topic-tag">Geopolitics</span> <span class="topic-tag">Health</span>
+                </div>
+                <div class="video-meta" style="margin-top: 8px;">
+                    <a href="https://www.youtube.com/watch?v=qjPH9njnaVU" target="_blank" style="color: #6366f1;">▶ Watch Video</a> | 
+                    📅 2026-04-06
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <h2>📊 Score por Categoria</h2>
-      <div class="chart-container"><canvas id="categoryChart"></canvas></div>
+    
+    <div class="topic-section" style="margin-top: 40px; padding: 20px; background: #1a2236; border-radius: 10px;">
+        <h3 style="color: #f59e0b; margin-bottom: 15px;">⚙️ Pipeline Health Status</h3>
+        <p><strong>Overall Score:</strong> 74.1/100 (OPERATIONAL)</p>
+        <p><strong>Last Extraction:</strong> 2026-05-05 21:53 (3 days ago) ⚠️</p>
+        <p><strong>Total Runs:</strong> 142 (137 successful, 5 failed)</p>
+        <p><strong>Uptime:</strong> 96.5%</p>
+        <p><strong>Consecutive Failures:</strong> 0</p>
+        <p><strong>Today's Extractions:</strong> 0 ⚠️</p>
     </div>
-    <div class="card">
-      <h2>⚡ Performance vs Target</h2>
-      <div class="chart-container"><canvas id="perfChart"></canvas></div>
+    
+    <div style="text-align: center; margin-top: 40px; padding: 20px; color: #64748b;">
+        Generated by Hermes YouTube Intelligence Pipeline | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
     </div>
-  </div>
-
-  <div class="footer">
-    <p>🔄 Auto-refresh a cada 15 minutos | Última atualização: 2026-05-08T17:22:12.161863</p>
-  </div>
-
-  <script>
-    // Score donut
-    new Chart(document.getElementById('scoreChart'), {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [74.1, 25.900000000000006],
-          backgroundColor: ['#34d399', '#1e293b'],
-          borderWidth: 0
-        }]
-      },
-      options: {
-        cutout: '75%',
-        plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      }
-    });
-
-    // Category bars
-    new Chart(document.getElementById('categoryChart'), {
-      type: 'bar',
-      data: {
-        labels: ['Autonomy', 'Resilience', 'Adaptation', 'Performance'],
-        datasets: [{
-          data: [100, 96.5, 100, 0.0],
-          backgroundColor: ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b'],
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: { x: { ticks: { color: '#94a3b8' }, grid: { color: '#33415540' } }, y: { max: 100, ticks: { color: '#94a3b8' }, grid: { color: '#33415540' } } }
-      }
-    });
-
-    // Perf gauge
-    new Chart(document.getElementById('perfChart'), {
-      type: 'bar',
-      data: {
-        labels: ['Throughput/hr', 'Efficiency'],
-        datasets: [{
-          label: 'Atual',
-          data: [0.0, 0.0],
-          backgroundColor: '#38bdf8',
-          borderRadius: 6,
-        }, {
-          label: 'Target',
-          data: [1000, 100],
-          backgroundColor: '#64748b60',
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { labels: { color: '#94a3b8' } } },
-        scales: { x: { ticks: { color: '#94a3b8' }, grid: { color: '#33415540' } }, y: { ticks: { color: '#94a3b8' }, grid: { color: '#33415540' } } }
-      }
-    });
-
-    // Auto-refresh
-    setTimeout(() => location.reload(), 900000); // 15 min
-  </script>
 </body>
 </html>
